@@ -1,10 +1,17 @@
-[gd_scene load_steps=2 format=3 uid="uid://d34o2g1va8dgh"]
+[gd_scene load_steps=5 format=3 uid="uid://d34o2g1va8dgh"]
 
 [ext_resource type="Script" uid="uid://dgbgyk2453b7g" path="res://content/scenes/pause_menu/pause_menu.gd" id="1_aubt2"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_b3qfi"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_nhk7o"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_t47ub"]
 
 [node name="PauseMenu" type="CanvasLayer"]
 process_mode = 3
 script = ExtResource("1_aubt2")
+pause_action = &"pause"
 
 [node name="Dim" type="ColorRect" parent="."]
 anchors_preset = 15
@@ -24,26 +31,47 @@ alignment = 1
 
 [node name="PausedLabel" type="Label" parent="Options"]
 layout_mode = 2
-theme_override_font_sizes/font_size = 160
+theme_override_font_sizes/font_size = 200
 text = "Paused"
 horizontal_alignment = 1
 
 [node name="ContinueButton" type="Button" parent="Options"]
 layout_mode = 2
-theme_override_font_sizes/font_size = 32
+mouse_default_cursor_shape = 2
+theme_override_colors/font_color = Color(0.81, 0.81, 0.81, 1)
+theme_override_colors/font_focus_color = Color(1, 1, 1, 1)
+theme_override_colors/font_pressed_color = Color(0.5689727, 0.56897277, 0.5689727, 1)
+theme_override_colors/font_hover_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 64
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_b3qfi")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_nhk7o")
 text = "Continue"
 flat = true
 
 [node name="SettingsButton" type="Button" parent="Options"]
 layout_mode = 2
-theme_override_font_sizes/font_size = 32
+mouse_default_cursor_shape = 2
+theme_override_colors/font_color = Color(0.81, 0.81, 0.81, 1)
+theme_override_colors/font_focus_color = Color(1, 1, 1, 1)
+theme_override_colors/font_pressed_color = Color(0.5689727, 0.56897277, 0.5689727, 1)
+theme_override_colors/font_hover_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 64
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_b3qfi")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_nhk7o")
 text = "Settings"
 flat = true
 
 [node name="QuitButton" type="Button" parent="Options"]
 layout_mode = 2
-theme_override_font_sizes/font_size = 32
-text = "Quit"
+mouse_default_cursor_shape = 2
+theme_override_colors/font_color = Color(0.81, 0.81, 0.81, 1)
+theme_override_colors/font_focus_color = Color(1, 1, 1, 1)
+theme_override_colors/font_pressed_color = Color(0.5689727, 0.56897277, 0.5689727, 1)
+theme_override_colors/font_hover_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 64
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_b3qfi")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_nhk7o")
+text = "Exit"
 flat = true
 
 [node name="ConfirmQuit" type="VBoxContainer" parent="."]
@@ -57,18 +85,32 @@ alignment = 1
 
 [node name="ConfirmLabel" type="Label" parent="ConfirmQuit"]
 layout_mode = 2
-theme_override_font_sizes/font_size = 32
-text = "Are you sure you want to quit?
+theme_override_font_sizes/font_size = 64
+text = "Are you sure you want to exit?
 All progress will be lost."
 horizontal_alignment = 1
 
 [node name="ConfirmButton" type="Button" parent="ConfirmQuit"]
 layout_mode = 2
+mouse_default_cursor_shape = 2
+theme_override_colors/font_color = Color(0.81, 0.81, 0.81, 1)
+theme_override_colors/font_focus_color = Color(1, 1, 1, 1)
+theme_override_colors/font_pressed_color = Color(0.5689727, 0.56897277, 0.5689727, 1)
+theme_override_colors/font_hover_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 48
+theme_override_styles/focus = SubResource("StyleBoxEmpty_t47ub")
 text = "Confirm"
 flat = true
 
 [node name="CancelButton" type="Button" parent="ConfirmQuit"]
 layout_mode = 2
+mouse_default_cursor_shape = 2
+theme_override_colors/font_color = Color(0.81, 0.81, 0.81, 1)
+theme_override_colors/font_focus_color = Color(1, 1, 1, 1)
+theme_override_colors/font_pressed_color = Color(0.5689727, 0.56897277, 0.5689727, 1)
+theme_override_colors/font_hover_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 48
+theme_override_styles/focus = SubResource("StyleBoxEmpty_t47ub")
 text = "Cancel"
 flat = true
 
@@ -83,32 +125,67 @@ alignment = 1
 
 [node name="SettingsLabel" type="Label" parent="Settings"]
 layout_mode = 2
-theme_override_font_sizes/font_size = 80
+theme_override_font_sizes/font_size = 200
 text = "Settings"
 horizontal_alignment = 1
 
 [node name="MusicButton" type="Button" parent="Settings"]
 layout_mode = 2
+mouse_default_cursor_shape = 2
+theme_override_colors/font_color = Color(0.81, 0.81, 0.81, 1)
+theme_override_colors/font_focus_color = Color(1, 1, 1, 1)
+theme_override_colors/font_pressed_color = Color(0.5689727, 0.56897277, 0.5689727, 1)
+theme_override_colors/font_hover_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 64
+theme_override_styles/focus = SubResource("StyleBoxEmpty_t47ub")
 text = "Music: 100%"
 flat = true
 
 [node name="SFXButton" type="Button" parent="Settings"]
 layout_mode = 2
+mouse_default_cursor_shape = 2
+theme_override_colors/font_color = Color(0.81, 0.81, 0.81, 1)
+theme_override_colors/font_focus_color = Color(1, 1, 1, 1)
+theme_override_colors/font_pressed_color = Color(0.5689727, 0.56897277, 0.5689727, 1)
+theme_override_colors/font_hover_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 64
+theme_override_styles/focus = SubResource("StyleBoxEmpty_t47ub")
 text = "SFX: 100%"
 flat = true
 
 [node name="FullscreenButton" type="Button" parent="Settings"]
 layout_mode = 2
+mouse_default_cursor_shape = 2
+theme_override_colors/font_color = Color(0.81, 0.81, 0.81, 1)
+theme_override_colors/font_focus_color = Color(1, 1, 1, 1)
+theme_override_colors/font_pressed_color = Color(0.5689727, 0.56897277, 0.5689727, 1)
+theme_override_colors/font_hover_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 64
+theme_override_styles/focus = SubResource("StyleBoxEmpty_t47ub")
 text = "Toggle Fullscreen"
 flat = true
 
 [node name="GodotLicenseButton" type="Button" parent="Settings"]
 layout_mode = 2
+mouse_default_cursor_shape = 2
+theme_override_colors/font_color = Color(0.81, 0.81, 0.81, 1)
+theme_override_colors/font_focus_color = Color(1, 1, 1, 1)
+theme_override_colors/font_pressed_color = Color(0.5689727, 0.56897277, 0.5689727, 1)
+theme_override_colors/font_hover_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 64
+theme_override_styles/focus = SubResource("StyleBoxEmpty_t47ub")
 text = "Godot License"
 flat = true
 
 [node name="BackButton" type="Button" parent="Settings"]
 layout_mode = 2
+mouse_default_cursor_shape = 2
+theme_override_colors/font_color = Color(0.81, 0.81, 0.81, 1)
+theme_override_colors/font_focus_color = Color(1, 1, 1, 1)
+theme_override_colors/font_pressed_color = Color(0.5689727, 0.56897277, 0.5689727, 1)
+theme_override_colors/font_hover_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 64
+theme_override_styles/focus = SubResource("StyleBoxEmpty_t47ub")
 text = "Back"
 flat = true
 

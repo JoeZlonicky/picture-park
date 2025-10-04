@@ -1,7 +1,7 @@
 extends CanvasLayer
 
 
-const AUDIO_LEVEL_PER_PRESS: int = 20  # Should a divisor of 100
+const AUDIO_LEVEL_PER_PRESS: int = 10  # Should be a divisor of 100
 
 @export_custom(PROPERTY_HINT_INPUT_NAME, "") var pause_action: StringName
 
@@ -19,6 +19,13 @@ var _sfx_level: int = 100
 @onready var settings: VBoxContainer = $Settings
 @onready var music_button: Button = $Settings/MusicButton
 @onready var sfx_button: Button = $Settings/SFXButton
+
+
+func _ready() -> void:
+	if OS.get_name() == "Web":
+		quit_button.queue_free()
+	if visible:
+		continue_button.grab_focus()
 
 
 func _unhandled_input(event: InputEvent) -> void:

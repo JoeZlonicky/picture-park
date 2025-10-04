@@ -1,0 +1,20 @@
+[gd_scene load_steps=4 format=3 uid="uid://dutkxjk518yxv"]
+
+[ext_resource type="PackedScene" uid="uid://d1mxls52w4no2" path="res://components/visual/penguin_sprite/penguin_sprite.tscn" id="1_2rga7"]
+[ext_resource type="Script" uid="uid://b3kun37rqsxpu" path="res://content/player/player.gd" id="1_y66qv"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_y66qv"]
+radius = 9.0
+height = 56.0
+
+[node name="Player" type="CharacterBody2D"]
+script = ExtResource("1_y66qv")
+acceleration = 600.0
+max_move_speed = 200.0
+
+[node name="PenguinSprite" parent="." instance=ExtResource("1_2rga7")]
+position = Vector2(-1, -93)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+rotation = 1.5707964
+shape = SubResource("CapsuleShape2D_y66qv")

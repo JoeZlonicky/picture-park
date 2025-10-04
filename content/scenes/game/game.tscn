@@ -1,9 +1,37 @@
-[gd_scene load_steps=3 format=3 uid="uid://6v441kyjyoan"]
+[gd_scene load_steps=6 format=3 uid="uid://6v441kyjyoan"]
 
 [ext_resource type="Script" uid="uid://ci2tgbe6003r3" path="res://content/scenes/game/game.gd" id="1_gve2d"]
 [ext_resource type="PackedScene" uid="uid://d34o2g1va8dgh" path="res://content/scenes/pause_menu/pause_menu.tscn" id="2_8eu2a"]
+[ext_resource type="PackedScene" uid="uid://nt4qwfd4ixc4" path="res://content/scenes/main_menu/main_menu.tscn" id="2_bnayj"]
+[ext_resource type="PackedScene" uid="uid://dutkxjk518yxv" path="res://content/player/player.tscn" id="3_venge"]
+[ext_resource type="PackedScene" uid="uid://canbxhucaf17u" path="res://content/camera_tool/camera_tool.tscn" id="4_1acg5"]
 
 [node name="Game" type="Node2D"]
 script = ExtResource("1_gve2d")
 
+[node name="MainMenu" parent="." instance=ExtResource("2_bnayj")]
+process_mode = 3
+
 [node name="PauseMenu" parent="." instance=ExtResource("2_8eu2a")]
+visible = false
+
+[node name="Ground" type="ColorRect" parent="."]
+offset_left = -17840.0
+offset_top = -18592.0
+offset_right = 17969.0
+offset_bottom = 1107.0
+color = Color(0.13725491, 0.5647059, 0.3882353, 1)
+
+[node name="World" type="Node2D" parent="."]
+y_sort_enabled = true
+
+[node name="Player" parent="World" instance=ExtResource("3_venge")]
+position = Vector2(911, 638)
+
+[node name="CameraTool" parent="World" instance=ExtResource("4_1acg5")]
+position = Vector2(908, 987)
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(960, 540)
+
+[connection signal="closed" from="MainMenu" to="." method="_on_main_menu_closed"]

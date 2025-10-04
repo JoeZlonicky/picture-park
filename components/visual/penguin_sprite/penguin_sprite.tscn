@@ -1,0 +1,29 @@
+[gd_scene load_steps=5 format=3 uid="uid://d1mxls52w4no2"]
+
+[ext_resource type="Texture2D" uid="uid://j6v5lc6l5bhp" path="res://content/player/assets/player.svg" id="1_cdr1r"]
+[ext_resource type="Texture2D" uid="uid://wxmftv72gkjo" path="res://content/player/assets/pupil.svg" id="2_5ibtd"]
+[ext_resource type="Script" uid="uid://bf34q5r5ej4yo" path="res://components/visual/penguin_sprite/penguin_sprite.gd" id="2_woakw"]
+[ext_resource type="Texture2D" uid="uid://efq1c6ufpp4y" path="res://content/player/assets/nose.svg" id="3_woakw"]
+
+[node name="PenguinSprite" type="Sprite2D"]
+texture = ExtResource("1_cdr1r")
+script = ExtResource("2_woakw")
+eye_radius = 5.0
+
+[node name="LeftEyeContainer" type="Node2D" parent="."]
+position = Vector2(-33, -41)
+
+[node name="LeftEye" type="Sprite2D" parent="LeftEyeContainer"]
+unique_name_in_owner = true
+texture = ExtResource("2_5ibtd")
+
+[node name="RightEyeContainer" type="Node2D" parent="."]
+position = Vector2(33, -42)
+
+[node name="RightEye" type="Sprite2D" parent="RightEyeContainer"]
+unique_name_in_owner = true
+texture = ExtResource("2_5ibtd")
+
+[node name="Nose" type="Sprite2D" parent="."]
+position = Vector2(0, -20)
+texture = ExtResource("3_woakw")
