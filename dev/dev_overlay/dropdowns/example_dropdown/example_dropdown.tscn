@@ -1,0 +1,8 @@
+[gd_scene load_steps=3 format=3 uid="uid://drc72xc2bj6gt"]
+
+[ext_resource type="PackedScene" uid="uid://er66f71v3mir" path="res://dev/dev_overlay/dropdowns/dev_dropdown.tscn" id="1_8gmkg"]
+[ext_resource type="Script" uid="uid://d32lohx2oq802" path="res://dev/dev_overlay/dropdowns/example_dropdown/example_dropdown.gd" id="2_86xw7"]
+
+[node name="ExampleDropdown" instance=ExtResource("1_8gmkg")]
+text = "Examples..."
+script = ExtResource("2_86xw7")

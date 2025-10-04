@@ -1,0 +1,125 @@
+[gd_scene load_steps=2 format=3 uid="uid://d34o2g1va8dgh"]
+
+[ext_resource type="Script" uid="uid://dgbgyk2453b7g" path="res://content/scenes/pause_menu/pause_menu.gd" id="1_aubt2"]
+
+[node name="PauseMenu" type="CanvasLayer"]
+process_mode = 3
+script = ExtResource("1_aubt2")
+
+[node name="Dim" type="ColorRect" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.75)
+
+[node name="Options" type="VBoxContainer" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 1
+
+[node name="PausedLabel" type="Label" parent="Options"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 160
+text = "Paused"
+horizontal_alignment = 1
+
+[node name="ContinueButton" type="Button" parent="Options"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "Continue"
+flat = true
+
+[node name="SettingsButton" type="Button" parent="Options"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "Settings"
+flat = true
+
+[node name="QuitButton" type="Button" parent="Options"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "Quit"
+flat = true
+
+[node name="ConfirmQuit" type="VBoxContainer" parent="."]
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 1
+
+[node name="ConfirmLabel" type="Label" parent="ConfirmQuit"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "Are you sure you want to quit?
+All progress will be lost."
+horizontal_alignment = 1
+
+[node name="ConfirmButton" type="Button" parent="ConfirmQuit"]
+layout_mode = 2
+text = "Confirm"
+flat = true
+
+[node name="CancelButton" type="Button" parent="ConfirmQuit"]
+layout_mode = 2
+text = "Cancel"
+flat = true
+
+[node name="Settings" type="VBoxContainer" parent="."]
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 1
+
+[node name="SettingsLabel" type="Label" parent="Settings"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 80
+text = "Settings"
+horizontal_alignment = 1
+
+[node name="MusicButton" type="Button" parent="Settings"]
+layout_mode = 2
+text = "Music: 100%"
+flat = true
+
+[node name="SFXButton" type="Button" parent="Settings"]
+layout_mode = 2
+text = "SFX: 100%"
+flat = true
+
+[node name="FullscreenButton" type="Button" parent="Settings"]
+layout_mode = 2
+text = "Toggle Fullscreen"
+flat = true
+
+[node name="GodotLicenseButton" type="Button" parent="Settings"]
+layout_mode = 2
+text = "Godot License"
+flat = true
+
+[node name="BackButton" type="Button" parent="Settings"]
+layout_mode = 2
+text = "Back"
+flat = true
+
+[connection signal="visibility_changed" from="." to="." method="_on_visibility_changed"]
+[connection signal="pressed" from="Options/ContinueButton" to="." method="_on_continue_button_pressed"]
+[connection signal="pressed" from="Options/SettingsButton" to="." method="_on_settings_button_pressed"]
+[connection signal="pressed" from="Options/QuitButton" to="." method="_on_quit_button_pressed"]
+[connection signal="pressed" from="ConfirmQuit/ConfirmButton" to="." method="_on_confirm_button_pressed"]
+[connection signal="pressed" from="ConfirmQuit/CancelButton" to="." method="_on_cancel_button_pressed"]
+[connection signal="pressed" from="Settings/MusicButton" to="." method="_on_music_button_pressed"]
+[connection signal="pressed" from="Settings/SFXButton" to="." method="_on_sfx_button_pressed"]
+[connection signal="pressed" from="Settings/FullscreenButton" to="." method="_on_fullscreen_button_pressed"]
+[connection signal="pressed" from="Settings/GodotLicenseButton" to="." method="_on_godot_license_button_pressed"]
+[connection signal="pressed" from="Settings/BackButton" to="." method="_on_settings_back_button_pressed"]

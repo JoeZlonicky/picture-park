@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=3 uid="uid://b7btidc8x10mr"]
+
+[ext_resource type="Script" uid="uid://pvtmqdh5xkrl" path="res://launcher/launcher.gd" id="1_m3vdr"]
+[ext_resource type="PackedScene" uid="uid://6v441kyjyoan" path="res://content/scenes/game/game.tscn" id="2_pedqv"]
+
+[node name="Launcher" type="Node"]
+script = ExtResource("1_m3vdr")
+_default_main_scene = ExtResource("2_pedqv")
+_min_window_size = Vector2i(640, 640)

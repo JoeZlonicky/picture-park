@@ -1,0 +1,26 @@
+[gd_scene load_steps=2 format=3 uid="uid://er66f71v3mir"]
+
+[ext_resource type="Script" uid="uid://c67pcxwysgxp3" path="res://dev/dev_overlay/dropdowns/dev_dropdown.gd" id="1_lwnbu"]
+
+[node name="DevDropdown" type="Button"]
+custom_minimum_size = Vector2(200, 0)
+offset_right = 200.0
+offset_bottom = 42.0
+size_flags_horizontal = 0
+focus_mode = 0
+theme_override_colors/font_color = Color(0.780392, 0.862745, 0.815686, 1)
+theme_override_colors/font_pressed_color = Color(0.607843, 0.670588, 0.698039, 1)
+theme_override_colors/font_hover_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 24
+toggle_mode = true
+text = "Text"
+flat = true
+alignment = 0
+script = ExtResource("1_lwnbu")
+
+[node name="Menu" type="VBoxContainer" parent="."]
+visible = false
+layout_mode = 0
+theme_override_constants/separation = 0
+
+[connection signal="toggled" from="." to="." method="_on_toggled"]
