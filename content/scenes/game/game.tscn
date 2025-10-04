@@ -32,6 +32,17 @@ normal = Vector2(1, 0)
 script = ExtResource("1_gve2d")
 all_photos = Array[ExtResource("2_ccpix")]([ExtResource("3_6851e"), ExtResource("4_781ya"), ExtResource("5_cmdph")])
 
+[node name="HUD" type="CanvasLayer" parent="."]
+
+[node name="CoordLabel" type="Label" parent="HUD"]
+offset_left = 5.0
+offset_top = 4.0
+offset_right = 261.0
+offset_bottom = 44.333332
+theme_override_font_sizes/font_size = 32
+text = "x: 
+y: "
+
 [node name="MainMenu" parent="." instance=ExtResource("2_bnayj")]
 process_mode = 3
 visible = false

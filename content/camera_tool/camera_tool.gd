@@ -68,7 +68,7 @@ func take_photo() -> void:
 		captures.append(area.data)
 	
 	var image := screenshot_viewport.get_texture().get_image()
-	var photo := Photo.new(image, marker_2d.global_position, Time.get_ticks_msec(), captures)
+	var photo := Photo.new(image, marker_2d.global_position, Time.get_unix_time_from_system(), captures)
 	photo_taken.emit(photo)
 	interact_collision_shape_2d.disabled = false
 

@@ -23,6 +23,10 @@ _show_when_prioritized = NodePath("Label")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="InteractableArea"]
 shape = SubResource("CircleShape2D_cfh6h")
 
+[node name="VBoxContainer" type="VBoxContainer" parent="InteractableArea"]
+offset_right = 40.0
+offset_bottom = 40.0
+
 [node name="Label" type="Label" parent="InteractableArea"]
 visibility_layer = 2
 anchors_preset = 5

@@ -1,6 +1,10 @@
-[gd_scene load_steps=2 format=3 uid="uid://byqhqqqypiesd"]
+[gd_scene load_steps=4 format=3 uid="uid://byqhqqqypiesd"]
 
 [ext_resource type="Script" uid="uid://djlmrhyutumuq" path="res://content/scenes/screenshot_screen/screenshot_screen.gd" id="1_8qxr4"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_vmqyb"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_7pgg2"]
 
 [node name="ScreenshotScreen" type="CanvasLayer"]
 script = ExtResource("1_8qxr4")
@@ -27,6 +31,13 @@ unique_name_in_owner = true
 layout_mode = 2
 theme_override_font_sizes/font_size = 64
 text = "New Photo!"
+horizontal_alignment = 1
+
+[node name="CoordLabel" type="Label" parent="VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "Taken at: x:52 y:200"
 horizontal_alignment = 1
 
 [node name="Poloroid" type="ColorRect" parent="VBoxContainer"]
@@ -67,8 +78,34 @@ horizontal_alignment = 1
 custom_minimum_size = Vector2(0, 32)
 layout_mode = 2
 
-[node name="ContinueLabel" type="Label" parent="VBoxContainer"]
+[node name="ContinueButton" type="Button" parent="VBoxContainer"]
+unique_name_in_owner = true
 layout_mode = 2
+mouse_default_cursor_shape = 2
+theme_override_colors/font_color = Color(0.81, 0.81, 0.81, 1)
+theme_override_colors/font_focus_color = Color(1, 1, 1, 1)
+theme_override_colors/font_pressed_color = Color(0.5689727, 0.56897277, 0.5689727, 1)
+theme_override_colors/font_hover_color = Color(1, 1, 1, 1)
 theme_override_font_sizes/font_size = 42
-text = "Press Space to Continue"
-horizontal_alignment = 1
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_vmqyb")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_7pgg2")
+text = "Continue"
+flat = true
+
+[node name="SaveButton" type="Button" parent="VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+mouse_default_cursor_shape = 2
+theme_override_colors/font_color = Color(0.81, 0.81, 0.81, 1)
+theme_override_colors/font_focus_color = Color(1, 1, 1, 1)
+theme_override_colors/font_pressed_color = Color(0.5689727, 0.56897277, 0.5689727, 1)
+theme_override_colors/font_hover_color = Color(1, 1, 1, 1)
+theme_override_colors/font_disabled_color = Color(0.5449743, 0.54497427, 0.5449743, 1)
+theme_override_font_sizes/font_size = 42
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_vmqyb")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_7pgg2")
+text = "Save (Desktop only)"
+flat = true
+
+[connection signal="pressed" from="VBoxContainer/ContinueButton" to="." method="_on_continue_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/SaveButton" to="." method="_on_save_button_pressed"]

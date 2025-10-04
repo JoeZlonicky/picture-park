@@ -16,12 +16,13 @@ func _ready() -> void:
 
 
 func update_progress(current: int, total: int) -> void:
-	label.text = str(current) + " / " + str(total)
 	if current < total:
+		label.text = str(current) + " / " + str(total)
 		label.modulate = Color("e83b3b")
 		unlocked = false
 	else:
 		label.modulate = Color.WHITE
+		label.text = "Pick up [E]"
 		unlocked = true
 
 
