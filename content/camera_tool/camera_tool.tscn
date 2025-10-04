@@ -1,12 +1,19 @@
-[gd_scene load_steps=5 format=3 uid="uid://canbxhucaf17u"]
+[gd_scene load_steps=8 format=3 uid="uid://canbxhucaf17u"]
 
 [ext_resource type="Script" uid="uid://dsjby0dfvpun4" path="res://content/camera_tool/camera_tool.gd" id="1_500d4"]
 [ext_resource type="Texture2D" uid="uid://crasakmofrcf8" path="res://content/camera_tool/assets/camera.svg" id="1_x0bsp"]
 [ext_resource type="Texture2D" uid="uid://c87linj5uydhw" path="res://icon.svg" id="3_8u5ld"]
+[ext_resource type="PackedScene" uid="uid://kel86f0b8nov" path="res://components/general/interactable_area/interactable_area.tscn" id="4_akk7j"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_500d4"]
 radius = 28.0
 height = 90.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_8u5ld"]
+size = Vector2(390, 475)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_akk7j"]
+radius = 50.08992
 
 [node name="CameraTool" type="StaticBody2D"]
 script = ExtResource("1_500d4")
@@ -16,6 +23,7 @@ position = Vector2(0, -89)
 texture = ExtResource("1_x0bsp")
 
 [node name="Label" type="Label" parent="."]
+visibility_layer = 2
 offset_left = -63.0
 offset_top = -274.0
 offset_right = 65.0
@@ -32,6 +40,7 @@ stretch = true
 
 [node name="SubViewport" type="SubViewport" parent="SubViewportContainer"]
 handle_input_locally = false
+canvas_cull_mask = 4293918721
 size = Vector2i(18, 22)
 render_target_update_mode = 4
 
@@ -45,6 +54,7 @@ rotation = 1.5707964
 shape = SubResource("CapsuleShape2D_500d4")
 
 [node name="SubViewport" type="SubViewport" parent="."]
+canvas_cull_mask = 4293918721
 size = Vector2i(445, 543)
 render_target_update_mode = 4
 
@@ -62,8 +72,39 @@ offset_right = 223.0
 offset_bottom = 271.0
 texture = ExtResource("3_8u5ld")
 
+[node name="CollectionArea" type="Area2D" parent="Marker2D"]
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Marker2D/CollectionArea"]
+position = Vector2(2, -1.5)
+shape = SubResource("RectangleShape2D_8u5ld")
+
 [node name="Timer" type="Timer" parent="."]
 wait_time = 5.0
 one_shot = true
 
+[node name="InteractableArea" parent="." node_paths=PackedStringArray("_show_when_prioritized") instance=ExtResource("4_akk7j")]
+_show_when_prioritized = NodePath("Label")
+
+[node name="Label" type="Label" parent="InteractableArea"]
+visibility_layer = 2
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -73.0
+offset_top = -266.0
+offset_right = 71.0
+offset_bottom = -228.66667
+grow_horizontal = 2
+theme_override_font_sizes/font_size = 32
+text = "Start Timer [E]
+Pick up [Space]"
+horizontal_alignment = 1
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="InteractableArea"]
+position = Vector2(0, -87)
+shape = SubResource("CircleShape2D_akk7j")
+
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[connection signal="interacted_with" from="InteractableArea" to="." method="_on_interactable_area_interacted_with"]

@@ -32,11 +32,11 @@ func interact_with() -> void:
 
 
 ## Expected to be called by an [InteractHandler] to manage prioritization.
-func update_prioritized(is_prioritized: bool) -> void:
-	if is_prioritized == _is_prioritized:
+func update_prioritized(p_is_prioritized: bool) -> void:
+	if p_is_prioritized == _is_prioritized:
 		return
 	
-	_is_prioritized = is_prioritized
+	_is_prioritized = p_is_prioritized
 	if _show_when_prioritized:
 		_show_when_prioritized.visible = _is_prioritized
 	
@@ -44,3 +44,7 @@ func update_prioritized(is_prioritized: bool) -> void:
 		prioritized.emit()
 	else:
 		prioritize_ended.emit()
+
+
+func is_prioritized() -> bool:
+	return _is_prioritized

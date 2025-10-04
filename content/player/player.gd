@@ -1,5 +1,8 @@
+class_name Player
 extends CharacterBody2D
 
+
+signal moved_for_first_time
 
 @export_range(0.0, 200, 0.1, "suffix:px/s²", "or_greater") var acceleration: float = 100.0
 @export_range(0.0, 200, 0.1, "suffix:px/s") var max_move_speed: float = 100.0
@@ -8,8 +11,11 @@ extends CharacterBody2D
 
 # -1, 0, or 1
 var swing_direction: int = 0
+var moved_before: bool = false
+var hat: Node2D = null
 
 @onready var penguin_sprite: PenguinSprite = $PenguinSprite
+@onready var hat_slot: Marker2D = $PenguinSprite/HatSlot
 
 
 func _process(delta: float) -> void:
@@ -32,8 +38,23 @@ func _physics_process(delta: float) -> void:
 	elif input.is_zero_approx() and swing_direction:
 		swing_direction = 0
 	
+	if input and not moved_before:
+		moved_before = true
+		moved_for_first_time.emit()
+	
 	velocity = velocity.move_toward(input * max_move_speed, delta * acceleration)
 	move_and_slide()
+
+
+func equip_hat(new_hat: Node2D) -> void:
+	remove_hat()
+	hat_slot.add_child(new_hat)
+	hat = new_hat
+
+
+func remove_hat() -> void:
+	if hat:
+		hat.queue_free()
 
 
 func _get_input() -> Vector2:

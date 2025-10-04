@@ -1,0 +1,74 @@
+[gd_scene load_steps=2 format=3 uid="uid://byqhqqqypiesd"]
+
+[ext_resource type="Script" uid="uid://djlmrhyutumuq" path="res://content/scenes/screenshot_screen/screenshot_screen.gd" id="1_8qxr4"]
+
+[node name="ScreenshotScreen" type="CanvasLayer"]
+script = ExtResource("1_8qxr4")
+
+[node name="Dim" type="ColorRect" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.75)
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 16
+alignment = 1
+
+[node name="TitleLabel" type="Label" parent="VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_font_sizes/font_size = 64
+text = "New Photo!"
+horizontal_alignment = 1
+
+[node name="Poloroid" type="ColorRect" parent="VBoxContainer"]
+custom_minimum_size = Vector2(485, 583)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="Screenshot" type="TextureRect" parent="VBoxContainer/Poloroid"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 20.0
+offset_top = 20.0
+offset_right = -20.0
+offset_bottom = -20.0
+grow_horizontal = 2
+grow_vertical = 2
+stretch_mode = 3
+
+[node name="NewLabel" type="Label" parent="VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_font_sizes/font_size = 42
+text = "First photo of: "
+horizontal_alignment = 1
+
+[node name="UpdatedLabel" type="Label" parent="VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_font_sizes/font_size = 42
+text = "Updated:"
+horizontal_alignment = 1
+
+[node name="Control" type="Control" parent="VBoxContainer"]
+custom_minimum_size = Vector2(0, 32)
+layout_mode = 2
+
+[node name="ContinueLabel" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 42
+text = "Press Space to Continue"
+horizontal_alignment = 1

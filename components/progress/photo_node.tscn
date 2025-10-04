@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://b3hrnwgsd1m5f"]
+
+[ext_resource type="Script" uid="uid://bddool8v27id5" path="res://components/progress/photo_node.gd" id="1_h7aok"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_h7aok"]
+radius = 54.0
+
+[node name="PhotoNode" type="Area2D"]
+collision_layer = 2
+collision_mask = 0
+script = ExtResource("1_h7aok")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_h7aok")

@@ -1,0 +1,40 @@
+[gd_scene load_steps=6 format=3 uid="uid://qwomiwoorpkq"]
+
+[ext_resource type="PackedScene" uid="uid://ul173n6ylxyk" path="res://content/decorations/pedestal/pedestal.tscn" id="1_2vetl"]
+[ext_resource type="Script" uid="uid://dhwhoknyd0v3a" path="res://content/interactables/crown_pedestal/crown_pedestal.gd" id="1_6ob6y"]
+[ext_resource type="Texture2D" uid="uid://drqt8eh51lksh" path="res://content/hats/crown.svg" id="2_6ob6y"]
+[ext_resource type="PackedScene" uid="uid://kel86f0b8nov" path="res://components/general/interactable_area/interactable_area.tscn" id="4_fpqur"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_cfh6h"]
+radius = 173.64908
+
+[node name="CrownPedestal" type="Node2D"]
+script = ExtResource("1_6ob6y")
+
+[node name="Pedestal" parent="." instance=ExtResource("1_2vetl")]
+
+[node name="Crown" type="Sprite2D" parent="."]
+position = Vector2(0, -186)
+texture = ExtResource("2_6ob6y")
+
+[node name="InteractableArea" parent="." node_paths=PackedStringArray("_show_when_prioritized") instance=ExtResource("4_fpqur")]
+_show_when_prioritized = NodePath("Label")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="InteractableArea"]
+shape = SubResource("CircleShape2D_cfh6h")
+
+[node name="Label" type="Label" parent="InteractableArea"]
+visibility_layer = 2
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -146.0
+offset_top = -288.0
+offset_right = 143.0
+offset_bottom = -232.0
+grow_horizontal = 2
+theme_override_font_sizes/font_size = 48
+text = "0 / 0"
+horizontal_alignment = 1
+
+[connection signal="interacted_with" from="InteractableArea" to="." method="_on_interactable_area_interacted_with"]

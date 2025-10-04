@@ -1,14 +1,36 @@
-[gd_scene load_steps=7 format=3 uid="uid://6v441kyjyoan"]
+[gd_scene load_steps=20 format=3 uid="uid://6v441kyjyoan"]
 
 [ext_resource type="Script" uid="uid://ci2tgbe6003r3" path="res://content/scenes/game/game.gd" id="1_gve2d"]
 [ext_resource type="PackedScene" uid="uid://d34o2g1va8dgh" path="res://content/scenes/pause_menu/pause_menu.tscn" id="2_8eu2a"]
 [ext_resource type="PackedScene" uid="uid://nt4qwfd4ixc4" path="res://content/scenes/main_menu/main_menu.tscn" id="2_bnayj"]
+[ext_resource type="Script" uid="uid://boao4tucjq5bs" path="res://resources/photo_data/photo_data.gd" id="2_ccpix"]
+[ext_resource type="Resource" uid="uid://ew6cl14t4olo" path="res://content/player/player.tres" id="3_6851e"]
 [ext_resource type="PackedScene" uid="uid://dutkxjk518yxv" path="res://content/player/player.tscn" id="3_venge"]
-[ext_resource type="PackedScene" uid="uid://byqhqqqypiesd" path="res://content/scenes/overlays/screenshot_screen/screenshot_screen.tscn" id="4_5grdk"]
-[ext_resource type="PackedScene" uid="uid://ce8dpxhayya51" path="res://content/plants/tree/tree.tscn" id="7_sr6ay"]
+[ext_resource type="PackedScene" uid="uid://byqhqqqypiesd" path="res://content/scenes/screenshot_screen/screenshot_screen.tscn" id="4_5grdk"]
+[ext_resource type="Resource" uid="uid://ck6okwdbkcqc6" path="res://content/decorations/pedestal/pedestal.tres" id="4_781ya"]
+[ext_resource type="Resource" uid="uid://dok102da3n0pr" path="res://content/plants/circle_tree/circle_tree.tres" id="5_cmdph"]
+[ext_resource type="Texture2D" uid="uid://ccyrefpcp488l" path="res://content/decorations/ice_rink.svg" id="5_sr6ay"]
+[ext_resource type="PackedScene" uid="uid://ce8dpxhayya51" path="res://content/plants/circle_tree/circle_tree.tscn" id="7_sr6ay"]
+[ext_resource type="PackedScene" uid="uid://qwomiwoorpkq" path="res://content/interactables/crown_pedestal/crown_pedestal.tscn" id="8_sk0bh"]
+[ext_resource type="PackedScene" uid="uid://ccrbgvhww66b6" path="res://content/scenes/gallery_screen/gallery_screen.tscn" id="9_6851e"]
+[ext_resource type="PackedScene" uid="uid://b507b45rnxi4s" path="res://content/interactables/book_pedestal/book_pedestal.tscn" id="9_b1pv3"]
+[ext_resource type="PackedScene" uid="uid://ch16dxpr3ebtr" path="res://components/input/fullscreen_toggle/fullscreen_toggle.tscn" id="10_781ya"]
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_axvww"]
+normal = Vector2(1, 0)
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_ol851"]
+normal = Vector2(1, 0)
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_ccpix"]
+normal = Vector2(1, 0)
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_sk0bh"]
+normal = Vector2(1, 0)
 
 [node name="Game" type="Node2D"]
 script = ExtResource("1_gve2d")
+all_photos = Array[ExtResource("2_ccpix")]([ExtResource("3_6851e"), ExtResource("4_781ya"), ExtResource("5_cmdph")])
 
 [node name="MainMenu" parent="." instance=ExtResource("2_bnayj")]
 process_mode = 3
@@ -21,18 +43,68 @@ visible = false
 process_mode = 3
 visible = false
 
+[node name="GalleryScreen" parent="." instance=ExtResource("9_6851e")]
+visible = false
+
+[node name="FullscreenToggle" parent="." instance=ExtResource("10_781ya")]
+input_name = &"fullscreen"
+
 [node name="Ground" type="ColorRect" parent="."]
-offset_left = -17840.0
-offset_top = -18592.0
-offset_right = 17969.0
-offset_bottom = 1107.0
+offset_left = -15602.0
+offset_top = -9238.0
+offset_right = 20207.0
+offset_bottom = 10461.0
 color = Color(0.13725491, 0.5647059, 0.3882353, 1)
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Ground"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Ground/StaticBody2D"]
+position = Vector2(15602, 0)
+rotation = 1.5707964
+shape = SubResource("WorldBoundaryShape2D_axvww")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Ground/StaticBody2D"]
+position = Vector2(35809, 9237)
+rotation = -3.1415927
+shape = SubResource("WorldBoundaryShape2D_ol851")
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="Ground/StaticBody2D"]
+position = Vector2(15601, 19699)
+rotation = -1.5707964
+shape = SubResource("WorldBoundaryShape2D_ccpix")
+
+[node name="CollisionShape2D4" type="CollisionShape2D" parent="Ground/StaticBody2D"]
+position = Vector2(0, 9238)
+shape = SubResource("WorldBoundaryShape2D_sk0bh")
+
+[node name="IceRink" type="Sprite2D" parent="."]
+texture = ExtResource("5_sr6ay")
+
+[node name="MoveTutorial" type="Label" parent="IceRink"]
+modulate = Color(1, 1, 1, 0.6313726)
+offset_left = -437.0
+offset_top = 341.0
+offset_right = -152.0
+offset_bottom = 378.33334
+theme_override_font_sizes/font_size = 32
+text = "WASD to waddle!"
+
+[node name="CameraTutorial" type="Label" parent="IceRink"]
+modulate = Color(1, 1, 1, 0.6313726)
+offset_left = 174.0
+offset_top = 326.0
+offset_right = 450.0
+offset_bottom = 363.33334
+theme_override_font_sizes/font_size = 32
+text = "Space to place
+camera!"
+horizontal_alignment = 1
 
 [node name="World" type="Node2D" parent="."]
 y_sort_enabled = true
 
 [node name="Player" parent="World" instance=ExtResource("3_venge")]
-position = Vector2(911, 638)
+position = Vector2(-15, 492)
 
 [node name="Camera2D" type="Camera2D" parent="World/Player"]
 position = Vector2(49, -98)
@@ -41,8 +113,18 @@ position_smoothing_enabled = true
 [node name="CameraPlaceMarker" type="Marker2D" parent="World/Player"]
 position = Vector2(1, 90)
 
-[node name="Tree" parent="World" instance=ExtResource("7_sr6ay")]
-position = Vector2(957, 578)
+[node name="CircleTree" parent="World" instance=ExtResource("7_sr6ay")]
+position = Vector2(-931, 69)
+
+[node name="CrownPedestal" parent="World" instance=ExtResource("8_sk0bh")]
+position = Vector2(-156, 3)
+
+[node name="BookPedestal" parent="World" instance=ExtResource("9_b1pv3")]
+position = Vector2(159, 1)
 
 [connection signal="closed" from="MainMenu" to="." method="_on_main_menu_closed"]
 [connection signal="closed" from="ScreenshotScreen" to="." method="_on_screenshot_screen_closed"]
+[connection signal="closed" from="GalleryScreen" to="." method="_on_gallery_screen_closed"]
+[connection signal="view_request" from="GalleryScreen" to="." method="_on_gallery_screen_view_request"]
+[connection signal="moved_for_first_time" from="World/Player" to="." method="_on_player_moved_for_first_time"]
+[connection signal="opened" from="World/BookPedestal" to="." method="_on_book_pedestal_opened"]

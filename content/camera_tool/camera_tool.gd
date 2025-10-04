@@ -1,8 +1,9 @@
 class_name CameraTool
 extends StaticBody2D
 
-signal photo_taken(image: Image)
+signal photo_taken(photo: Photo)
 
+@onready var collection_area: Area2D = $Marker2D/CollectionArea
 @onready var marker_2d: Marker2D = $Marker2D
 @onready var sub_viewport: SubViewport = $SubViewportContainer/SubViewport
 @onready var preview_camera_2d: Camera2D = $SubViewportContainer/SubViewport/Camera2D
@@ -10,6 +11,8 @@ signal photo_taken(image: Image)
 @onready var screenshot_viewport: SubViewport = $SubViewport
 @onready var timer: Timer = $Timer
 @onready var label: Label = $Label
+@onready var interactable_area: InteractableArea = $InteractableArea
+@onready var interact_collision_shape_2d: CollisionShape2D = $InteractableArea/CollisionShape2D
 
 
 func _ready() -> void:
@@ -18,10 +21,7 @@ func _ready() -> void:
 
 
 func _unhandled_input(event: InputEvent) -> void:
-	if event.is_action_pressed("interact") and timer.is_stopped():
-		start_timer()
-		get_viewport().set_input_as_handled()
-	if event.is_action_pressed("camera"):
+	if event.is_action_pressed("camera") and interactable_area.is_prioritized():
 		queue_free()
 
 
@@ -46,14 +46,37 @@ func set_limits(rect: Rect2i) -> void:
 
 func start_timer() -> void:
 	timer.start()
+	interact_collision_shape_2d.disabled = true
 
 
 func take_photo() -> void:
 	label.hide()
 	await RenderingServer.frame_post_draw
+	var captures: Array[PhotoData] = []
+	for area in collection_area.get_overlapping_areas():
+		if not area is PhotoNode:
+			continue
+		
+		if not area.data:
+			push_warning(area.owner.name + " has a PhotoNode without data!")
+			continue
+		if not area.data.name:
+			push_warning(area.owner.name + " has a PhotoNode without a data.name!")
+		if captures.has(area.data):
+			continue
+		
+		captures.append(area.data)
+	
 	var image := screenshot_viewport.get_texture().get_image()
-	photo_taken.emit(image)
+	var photo := Photo.new(image, marker_2d.global_position, Time.get_ticks_msec(), captures)
+	photo_taken.emit(photo)
+	interact_collision_shape_2d.disabled = false
 
 
 func _on_timer_timeout() -> void:
 	take_photo()
+
+
+func _on_interactable_area_interacted_with() -> void:
+	if timer.is_stopped():
+		start_timer()

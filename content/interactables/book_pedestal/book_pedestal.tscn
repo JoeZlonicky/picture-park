@@ -1,0 +1,41 @@
+[gd_scene load_steps=6 format=3 uid="uid://b507b45rnxi4s"]
+
+[ext_resource type="Script" uid="uid://rsgsg80kw65a" path="res://content/interactables/book_pedestal/book_pedestal.gd" id="1_7eo5c"]
+[ext_resource type="PackedScene" uid="uid://ul173n6ylxyk" path="res://content/decorations/pedestal/pedestal.tscn" id="1_ho2mo"]
+[ext_resource type="Texture2D" uid="uid://ksi26aptqcee" path="res://content/decorations/book.svg" id="2_7eo5c"]
+[ext_resource type="PackedScene" uid="uid://kel86f0b8nov" path="res://components/general/interactable_area/interactable_area.tscn" id="4_2h6hx"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_2h6hx"]
+radius = 44.28318
+
+[node name="BookPedestal" type="Node2D"]
+script = ExtResource("1_7eo5c")
+
+[node name="Pedestal" parent="." instance=ExtResource("1_ho2mo")]
+
+[node name="Book" type="Sprite2D" parent="Pedestal"]
+position = Vector2(1, -165)
+texture = ExtResource("2_7eo5c")
+
+[node name="InteractableArea" parent="." node_paths=PackedStringArray("_show_when_prioritized") instance=ExtResource("4_2h6hx")]
+_show_when_prioritized = NodePath("Label")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="InteractableArea"]
+position = Vector2(0, -166)
+shape = SubResource("CircleShape2D_2h6hx")
+
+[node name="Label" type="Label" parent="InteractableArea"]
+visibility_layer = 2
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -73.0
+offset_top = -266.0
+offset_right = 71.0
+offset_bottom = -228.66667
+grow_horizontal = 2
+theme_override_font_sizes/font_size = 32
+text = "View [E]"
+horizontal_alignment = 1
+
+[connection signal="interacted_with" from="InteractableArea" to="." method="_on_interactable_area_interacted_with"]

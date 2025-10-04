@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://cswdnne5q4m53"]
+
+[ext_resource type="Texture2D" uid="uid://drqt8eh51lksh" path="res://content/hats/crown.svg" id="1_8npgg"]
+
+[node name="CrownHat" type="Node2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(0, -34)
+texture = ExtResource("1_8npgg")

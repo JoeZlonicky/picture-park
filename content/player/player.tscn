@@ -1,11 +1,17 @@
-[gd_scene load_steps=4 format=3 uid="uid://dutkxjk518yxv"]
+[gd_scene load_steps=8 format=3 uid="uid://dutkxjk518yxv"]
 
 [ext_resource type="PackedScene" uid="uid://d1mxls52w4no2" path="res://components/visual/penguin_sprite/penguin_sprite.tscn" id="1_2rga7"]
 [ext_resource type="Script" uid="uid://b3kun37rqsxpu" path="res://content/player/player.gd" id="1_y66qv"]
+[ext_resource type="PackedScene" uid="uid://b3hrnwgsd1m5f" path="res://components/progress/photo_node.tscn" id="3_i4jjh"]
+[ext_resource type="Resource" uid="uid://ew6cl14t4olo" path="res://content/player/player.tres" id="4_3ac0f"]
+[ext_resource type="PackedScene" uid="uid://ctetnw3oksm7f" path="res://components/general/interact_handler/interact_handler.tscn" id="5_3ac0f"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_y66qv"]
 radius = 9.0
 height = 98.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_3ac0f"]
+radius = 246.00813
 
 [node name="Player" type="CharacterBody2D"]
 script = ExtResource("1_y66qv")
@@ -17,6 +23,20 @@ swing_speed = 35.0
 [node name="PenguinSprite" parent="." instance=ExtResource("1_2rga7")]
 position = Vector2(-1, -93)
 
+[node name="HatSlot" type="Marker2D" parent="PenguinSprite"]
+position = Vector2(1, -89)
+
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 rotation = 1.5707964
 shape = SubResource("CapsuleShape2D_y66qv")
+
+[node name="PhotoNode" parent="." instance=ExtResource("3_i4jjh")]
+position = Vector2(0, -84)
+data = ExtResource("4_3ac0f")
+
+[node name="InteractHandler" parent="." instance=ExtResource("5_3ac0f")]
+interact_action = &"interact"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="InteractHandler"]
+position = Vector2(2, -81)
+shape = SubResource("CircleShape2D_3ac0f")
