@@ -3,17 +3,35 @@ extends CharacterBody2D
 
 @export_range(0.0, 200, 0.1, "suffix:px/s²", "or_greater") var acceleration: float = 100.0
 @export_range(0.0, 200, 0.1, "suffix:px/s") var max_move_speed: float = 100.0
+@export_range(0.0, 30.0, 0.1, "suffix:°") var max_swing: float = 20.0
+@export_range(0.0, 60.0, 0.1, "suffix:°/s") var swing_speed: float = 20.0
+
+# -1, 0, or 1
+var swing_direction: int = 0
 
 @onready var penguin_sprite: PenguinSprite = $PenguinSprite
 
 
-func _process(_delta: float) -> void:
+func _process(delta: float) -> void:
 	var input := _get_input()
 	penguin_sprite.look_direction = input
+	penguin_sprite.rotation_degrees = move_toward(penguin_sprite.rotation_degrees,
+		max_swing * swing_direction, swing_speed * delta)
+	if swing_direction > 0 and is_equal_approx(penguin_sprite.rotation_degrees, max_swing):
+		swing_direction = -1
+	elif swing_direction < 0 and is_equal_approx(penguin_sprite.rotation_degrees, -max_swing):
+		swing_direction = 1
 
 
 func _physics_process(delta: float) -> void:
 	var input := _get_input()
+	if input.x and swing_direction == 0:
+		swing_direction = 1 if input.x > 0 else -1
+	elif input.y and swing_direction == 0:
+		swing_direction = 1 if randf() > 0.5 else -1
+	elif input.is_zero_approx() and swing_direction:
+		swing_direction = 0
+	
 	velocity = velocity.move_toward(input * max_move_speed, delta * acceleration)
 	move_and_slide()
 

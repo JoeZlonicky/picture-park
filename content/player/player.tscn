@@ -5,12 +5,14 @@
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_y66qv"]
 radius = 9.0
-height = 56.0
+height = 98.0
 
 [node name="Player" type="CharacterBody2D"]
 script = ExtResource("1_y66qv")
 acceleration = 600.0
 max_move_speed = 200.0
+max_swing = 5.0
+swing_speed = 35.0
 
 [node name="PenguinSprite" parent="." instance=ExtResource("1_2rga7")]
 position = Vector2(-1, -93)

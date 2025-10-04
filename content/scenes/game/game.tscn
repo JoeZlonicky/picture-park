@@ -1,18 +1,24 @@
-[gd_scene load_steps=6 format=3 uid="uid://6v441kyjyoan"]
+[gd_scene load_steps=7 format=3 uid="uid://6v441kyjyoan"]
 
 [ext_resource type="Script" uid="uid://ci2tgbe6003r3" path="res://content/scenes/game/game.gd" id="1_gve2d"]
 [ext_resource type="PackedScene" uid="uid://d34o2g1va8dgh" path="res://content/scenes/pause_menu/pause_menu.tscn" id="2_8eu2a"]
 [ext_resource type="PackedScene" uid="uid://nt4qwfd4ixc4" path="res://content/scenes/main_menu/main_menu.tscn" id="2_bnayj"]
 [ext_resource type="PackedScene" uid="uid://dutkxjk518yxv" path="res://content/player/player.tscn" id="3_venge"]
-[ext_resource type="PackedScene" uid="uid://canbxhucaf17u" path="res://content/camera_tool/camera_tool.tscn" id="4_1acg5"]
+[ext_resource type="PackedScene" uid="uid://byqhqqqypiesd" path="res://content/scenes/overlays/screenshot_screen/screenshot_screen.tscn" id="4_5grdk"]
+[ext_resource type="PackedScene" uid="uid://ce8dpxhayya51" path="res://content/plants/tree/tree.tscn" id="7_sr6ay"]
 
 [node name="Game" type="Node2D"]
 script = ExtResource("1_gve2d")
 
 [node name="MainMenu" parent="." instance=ExtResource("2_bnayj")]
 process_mode = 3
+visible = false
 
 [node name="PauseMenu" parent="." instance=ExtResource("2_8eu2a")]
+visible = false
+
+[node name="ScreenshotScreen" parent="." instance=ExtResource("4_5grdk")]
+process_mode = 3
 visible = false
 
 [node name="Ground" type="ColorRect" parent="."]
@@ -28,10 +34,15 @@ y_sort_enabled = true
 [node name="Player" parent="World" instance=ExtResource("3_venge")]
 position = Vector2(911, 638)
 
-[node name="CameraTool" parent="World" instance=ExtResource("4_1acg5")]
-position = Vector2(908, 987)
+[node name="Camera2D" type="Camera2D" parent="World/Player"]
+position = Vector2(49, -98)
+position_smoothing_enabled = true
 
-[node name="Camera2D" type="Camera2D" parent="."]
-position = Vector2(960, 540)
+[node name="CameraPlaceMarker" type="Marker2D" parent="World/Player"]
+position = Vector2(1, 90)
+
+[node name="Tree" parent="World" instance=ExtResource("7_sr6ay")]
+position = Vector2(957, 578)
 
 [connection signal="closed" from="MainMenu" to="." method="_on_main_menu_closed"]
+[connection signal="closed" from="ScreenshotScreen" to="." method="_on_screenshot_screen_closed"]

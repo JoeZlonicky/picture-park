@@ -1,0 +1,41 @@
+[gd_scene load_steps=2 format=3 uid="uid://byqhqqqypiesd"]
+
+[ext_resource type="Script" uid="uid://djlmrhyutumuq" path="res://content/scenes/overlays/screenshot_screen/screenshot_screen.gd" id="1_8qxr4"]
+
+[node name="ScreenshotScreen" type="CanvasLayer"]
+script = ExtResource("1_8qxr4")
+
+[node name="Dim" type="ColorRect" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.75)
+
+[node name="ColorRect" type="ColorRect" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -247.5
+offset_top = -296.5
+offset_right = 237.5
+offset_bottom = 286.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Screenshot" type="TextureRect" parent="ColorRect"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 20.0
+offset_top = 20.0
+offset_right = -20.0
+offset_bottom = -20.0
+grow_horizontal = 2
+grow_vertical = 2
+stretch_mode = 3
