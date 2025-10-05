@@ -35,7 +35,7 @@ func _intro_dialogue() -> void:
 
 
 func _normal_dialogue() -> void:
-	NarrativeUtility.queue_dialogue(["Keep taking photos! I believe in you!"], "Mr. Penguin")
+	NarrativeUtility.queue_dialogue(["Keep taking photos! I believe in you!", "If you can't find a certain penguin, try going diagonal from here!"], "Mr. Penguin")
 
 
 func _victory_dialogue() -> void:

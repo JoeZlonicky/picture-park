@@ -21,6 +21,12 @@ var _queued_dialogue: Array[QueuedDialogue] = []
 @onready var _dialogue_label: TypedLabel = %DialogueLabel
 @onready var _margin_container: MarginContainer = %MarginContainer
 @onready var _dialogue_container: Container = %DialogueContainer
+@onready var audio_stream_player: AudioStreamPlayer = $AudioStreamPlayer
+
+
+func _process(_delta: float) -> void:
+	if _dialogue_label.is_typing() && not audio_stream_player.playing:
+		audio_stream_player.playing = true
 
 
 func _unhandled_input(event: InputEvent) -> void:
