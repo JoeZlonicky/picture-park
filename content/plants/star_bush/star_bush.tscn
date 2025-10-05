@@ -1,0 +1,35 @@
+[gd_scene load_steps=7 format=3 uid="uid://blv12aaplo5oq"]
+
+[ext_resource type="Shader" uid="uid://jpickgb20rcm" path="res://shaders/sway.gdshader" id="1_16adh"]
+[ext_resource type="Texture2D" uid="uid://cy8v5w1iedd7u" path="res://content/plants/star_bush/star_bush.svg" id="2_7uysy"]
+[ext_resource type="PackedScene" uid="uid://b3hrnwgsd1m5f" path="res://components/progress/photo_node.tscn" id="3_0ekyd"]
+[ext_resource type="Resource" uid="uid://bfrq0srflyk4i" path="res://content/plants/star_bush/star_bush.tres" id="4_7uysy"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_slrmu"]
+shader = ExtResource("1_16adh")
+shader_parameter/speed = 0.25
+shader_parameter/frequency_y = 5.0
+shader_parameter/frequency_x = 5.0
+shader_parameter/amplitude_y = 10.0
+shader_parameter/amplitude_x = 5.0
+shader_parameter/inclination = 10.0
+shader_parameter/rotation_angle = 0.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7uysy"]
+size = Vector2(41, 280)
+
+[node name="StarBush" type="StaticBody2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+material = SubResource("ShaderMaterial_slrmu")
+position = Vector2(0, -89)
+texture = ExtResource("2_7uysy")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-1, -19.5)
+rotation = 1.5707964
+shape = SubResource("RectangleShape2D_7uysy")
+
+[node name="PhotoNode" parent="." instance=ExtResource("3_0ekyd")]
+position = Vector2(3, -55)
+data = ExtResource("4_7uysy")

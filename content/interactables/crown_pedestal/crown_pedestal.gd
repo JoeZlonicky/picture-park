@@ -2,6 +2,8 @@ class_name CrownPedestal
 extends Node2D
 
 
+signal crown_picked_up
+
 const CROWN_HAT_SCENE := preload("uid://cswdnne5q4m53")
 
 var unlocked: bool = false
@@ -16,6 +18,9 @@ func _ready() -> void:
 
 
 func update_progress(current: int, total: int) -> void:
+	if not crown_on_pedestal:
+		label.text = ""
+	
 	if current < total:
 		label.text = str(current) + " / " + str(total)
 		label.modulate = Color("e83b3b")
@@ -28,8 +33,10 @@ func update_progress(current: int, total: int) -> void:
 
 func _on_interactable_area_interacted_with() -> void:
 	if unlocked and crown_on_pedestal:
+		label.text = ""
 		crown_on_pedestal = false
 		crown.hide()
 		var player := GameUtility.get_player()
 		var crown_hat := CROWN_HAT_SCENE.instantiate() as Node2D
 		player.equip_hat(crown_hat)
+		crown_picked_up.emit()

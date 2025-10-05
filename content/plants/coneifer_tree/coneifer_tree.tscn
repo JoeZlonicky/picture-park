@@ -1,0 +1,35 @@
+[gd_scene load_steps=7 format=3 uid="uid://cu3vlm00478w4"]
+
+[ext_resource type="Shader" uid="uid://jpickgb20rcm" path="res://shaders/sway.gdshader" id="1_i1ura"]
+[ext_resource type="Texture2D" uid="uid://dkuil3k75f0my" path="res://content/plants/coneifer_tree/coneifer_tree.svg" id="2_pxn5q"]
+[ext_resource type="PackedScene" uid="uid://b3hrnwgsd1m5f" path="res://components/progress/photo_node.tscn" id="3_8h4kp"]
+[ext_resource type="Resource" uid="uid://do35gp3mo6j6w" path="res://content/plants/coneifer_tree/coneifer_tree.tres" id="4_pxn5q"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_y4oa6"]
+shader = ExtResource("1_i1ura")
+shader_parameter/speed = 0.25
+shader_parameter/frequency_y = 5.0
+shader_parameter/frequency_x = 5.0
+shader_parameter/amplitude_y = 20.0
+shader_parameter/amplitude_x = 10.0
+shader_parameter/inclination = 10.0
+shader_parameter/rotation_angle = 0.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5r7pp"]
+size = Vector2(41, 96)
+
+[node name="ConeiferTree" type="StaticBody2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+material = SubResource("ShaderMaterial_y4oa6")
+position = Vector2(7, -232)
+texture = ExtResource("2_pxn5q")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(1.0000001, -19.5)
+rotation = 1.5707964
+shape = SubResource("RectangleShape2D_5r7pp")
+
+[node name="PhotoNode" parent="." instance=ExtResource("3_8h4kp")]
+position = Vector2(11, -180)
+data = ExtResource("4_pxn5q")

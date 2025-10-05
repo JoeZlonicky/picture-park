@@ -13,6 +13,9 @@ func _unhandled_input(event: InputEvent) -> void:
 	if not _closest or not event.is_action_pressed(interact_action):
 		return
 	
+	if GameUtility.get_game().pause_input_counter > 0:
+		return
+	
 	_closest.interact_with()
 	get_viewport().set_input_as_handled()
 

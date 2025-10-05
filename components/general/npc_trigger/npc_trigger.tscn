@@ -1,0 +1,42 @@
+[gd_scene load_steps=4 format=3 uid="uid://c6nb2lq8q6ydx"]
+
+[ext_resource type="PackedScene" uid="uid://kel86f0b8nov" path="res://components/general/interactable_area/interactable_area.tscn" id="1_dosv2"]
+[ext_resource type="Script" uid="uid://jk2fj8renvop" path="res://components/general/npc_trigger/npc_trigger.gd" id="1_ub1s6"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_xxfr2"]
+radius = 252.23996
+
+[node name="NPCTrigger" type="Node2D"]
+script = ExtResource("1_ub1s6")
+
+[node name="InteractableArea" parent="." node_paths=PackedStringArray("_show_when_prioritized") instance=ExtResource("1_dosv2")]
+_show_when_prioritized = NodePath("../VBoxContainer/TalkLabel")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="InteractableArea"]
+position = Vector2(-1, -57)
+shape = SubResource("CircleShape2D_xxfr2")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+visibility_layer = 2
+offset_left = -64.0
+offset_top = -360.0
+offset_right = 65.0
+offset_bottom = -263.0
+
+[node name="QuestionLabel" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 8
+theme_override_font_sizes/font_size = 48
+text = "?"
+horizontal_alignment = 1
+
+[node name="TalkLabel" type="Label" parent="VBoxContainer"]
+visible = false
+layout_mode = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 8
+theme_override_font_sizes/font_size = 32
+text = "Talk [E]"
+
+[connection signal="interacted_with" from="InteractableArea" to="." method="_on_interactable_area_interacted_with"]

@@ -14,7 +14,7 @@ script = ExtResource("1_6ob6y")
 [node name="Pedestal" parent="." instance=ExtResource("1_2vetl")]
 
 [node name="Crown" type="Sprite2D" parent="."]
-position = Vector2(0, -186)
+position = Vector2(0, -178)
 texture = ExtResource("2_6ob6y")
 
 [node name="InteractableArea" parent="." node_paths=PackedStringArray("_show_when_prioritized") instance=ExtResource("4_fpqur")]
@@ -37,6 +37,8 @@ offset_top = -288.0
 offset_right = 143.0
 offset_bottom = -232.0
 grow_horizontal = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 8
 theme_override_font_sizes/font_size = 48
 text = "0 / 0"
 horizontal_alignment = 1

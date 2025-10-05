@@ -1,0 +1,35 @@
+[gd_scene load_steps=7 format=3 uid="uid://d5l5ehqcjxf0"]
+
+[ext_resource type="Shader" uid="uid://jpickgb20rcm" path="res://shaders/sway.gdshader" id="1_rh14x"]
+[ext_resource type="Texture2D" uid="uid://yrvj70o2m08i" path="res://content/plants/crescent_bush/crescent_bush.svg" id="2_slrmu"]
+[ext_resource type="PackedScene" uid="uid://b3hrnwgsd1m5f" path="res://components/progress/photo_node.tscn" id="3_pla2p"]
+[ext_resource type="Resource" uid="uid://dkajgqf1jme6d" path="res://content/plants/crescent_bush/crescent_bush.tres" id="4_slrmu"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_slrmu"]
+shader = ExtResource("1_rh14x")
+shader_parameter/speed = 0.25
+shader_parameter/frequency_y = 5.0
+shader_parameter/frequency_x = 5.0
+shader_parameter/amplitude_y = 10.0
+shader_parameter/amplitude_x = 5.0
+shader_parameter/inclination = 10.0
+shader_parameter/rotation_angle = 0.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_slrmu"]
+size = Vector2(41, 280)
+
+[node name="CrescentBush" type="StaticBody2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+material = SubResource("ShaderMaterial_slrmu")
+position = Vector2(0, -67)
+texture = ExtResource("2_slrmu")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-1, -19.5)
+rotation = 1.5707964
+shape = SubResource("RectangleShape2D_slrmu")
+
+[node name="PhotoNode" parent="." instance=ExtResource("3_pla2p")]
+position = Vector2(3, -55)
+data = ExtResource("4_slrmu")

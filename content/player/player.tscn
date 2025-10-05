@@ -1,9 +1,11 @@
-[gd_scene load_steps=8 format=3 uid="uid://dutkxjk518yxv"]
+[gd_scene load_steps=10 format=3 uid="uid://dutkxjk518yxv"]
 
 [ext_resource type="PackedScene" uid="uid://d1mxls52w4no2" path="res://components/visual/penguin_sprite/penguin_sprite.tscn" id="1_2rga7"]
 [ext_resource type="Script" uid="uid://b3kun37rqsxpu" path="res://content/player/player.gd" id="1_y66qv"]
 [ext_resource type="PackedScene" uid="uid://b3hrnwgsd1m5f" path="res://components/progress/photo_node.tscn" id="3_i4jjh"]
+[ext_resource type="Texture2D" uid="uid://bckelsd04btcs" path="res://content/player/assets/packed_camera.svg" id="3_o23i7"]
 [ext_resource type="Resource" uid="uid://ew6cl14t4olo" path="res://content/player/player.tres" id="4_3ac0f"]
+[ext_resource type="Texture2D" uid="uid://drc24iqly13if" path="res://content/player/assets/camera_strap.svg" id="4_gdtqi"]
 [ext_resource type="PackedScene" uid="uid://ctetnw3oksm7f" path="res://components/general/interact_handler/interact_handler.tscn" id="5_3ac0f"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_y66qv"]
@@ -14,14 +16,26 @@ height = 98.0
 radius = 246.00813
 
 [node name="Player" type="CharacterBody2D"]
+collision_layer = 5
 script = ExtResource("1_y66qv")
 acceleration = 600.0
-max_move_speed = 200.0
+max_move_speed = 300.0
 max_swing = 5.0
 swing_speed = 35.0
 
 [node name="PenguinSprite" parent="." instance=ExtResource("1_2rga7")]
 position = Vector2(-1, -93)
+
+[node name="PackedCamera" type="Sprite2D" parent="PenguinSprite"]
+show_behind_parent = true
+position = Vector2(13, 33)
+rotation = 0.7853982
+texture = ExtResource("3_o23i7")
+
+[node name="CameraStrap" type="Sprite2D" parent="PenguinSprite"]
+position = Vector2(9, 42)
+rotation = -0.095323876
+texture = ExtResource("4_gdtqi")
 
 [node name="HatSlot" type="Marker2D" parent="PenguinSprite"]
 position = Vector2(1, -89)
@@ -40,3 +54,6 @@ interact_action = &"interact"
 [node name="CollisionShape2D" type="CollisionShape2D" parent="InteractHandler"]
 position = Vector2(2, -81)
 shape = SubResource("CircleShape2D_3ac0f")
+
+[node name="AudioListener2D" type="AudioListener2D" parent="."]
+current = true

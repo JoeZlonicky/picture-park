@@ -5,7 +5,7 @@ extends CharacterBody2D
 signal moved_for_first_time
 
 @export_range(0.0, 200, 0.1, "suffix:px/s²", "or_greater") var acceleration: float = 100.0
-@export_range(0.0, 200, 0.1, "suffix:px/s") var max_move_speed: float = 100.0
+@export_range(0.0, 200, 0.1, "suffix:px/s", "or_greater") var max_move_speed: float = 100.0
 @export_range(0.0, 30.0, 0.1, "suffix:°") var max_swing: float = 20.0
 @export_range(0.0, 60.0, 0.1, "suffix:°/s") var swing_speed: float = 20.0
 
@@ -16,6 +16,8 @@ var hat: Node2D = null
 
 @onready var penguin_sprite: PenguinSprite = $PenguinSprite
 @onready var hat_slot: Marker2D = $PenguinSprite/HatSlot
+@onready var packed_camera: Sprite2D = $PenguinSprite/PackedCamera
+@onready var camera_strap: Sprite2D = $PenguinSprite/CameraStrap
 
 
 func _process(delta: float) -> void:
@@ -46,6 +48,11 @@ func _physics_process(delta: float) -> void:
 	move_and_slide()
 
 
+func toggle_packed_camera(show_camera: bool) -> void:
+	packed_camera.visible = show_camera
+	camera_strap.visible = show_camera
+
+
 func equip_hat(new_hat: Node2D) -> void:
 	remove_hat()
 	hat_slot.add_child(new_hat)
@@ -58,4 +65,6 @@ func remove_hat() -> void:
 
 
 func _get_input() -> Vector2:
+	if GameUtility.get_game().pause_input_counter > 0:
+		return Vector2.ZERO
 	return  Input.get_vector("move_left", "move_right", "move_up", "move_down")

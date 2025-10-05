@@ -11,3 +11,8 @@ static func get_game() -> Game:
 static func get_player() -> Player:
 	var game := get_game()
 	return game.player
+
+
+static func is_beat() -> bool:
+	var game := get_game()
+	return game.crown_pedestal.unlocked

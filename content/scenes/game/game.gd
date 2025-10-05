@@ -8,11 +8,17 @@ const CAMERA_TOOL_SCENE := preload("uid://canbxhucaf17u")
 var photo_collection := PhotoCollection.new()
 var camera_tool: CameraTool = null
 var placed_camera_before: bool = false
+var pause_input_counter: int = 0
+var victory: bool = false
 
+@onready var dialogue_screen: DialogueScreen = $DialogueScreen
 @onready var screenshot_screen: ScreenshotScreen = $ScreenshotScreen
 @onready var gallery_screen: GallaryScreen = $GalleryScreen
 @onready var pause_menu: CanvasLayer = $PauseMenu
 @onready var main_menu: CanvasLayer = $MainMenu
+
+@onready var animation_player: AnimationPlayer = $VictoryScreen/AnimationPlayer
+@onready var victory_audio_stream_player: AudioStreamPlayer = $VictoryScreen/AudioStreamPlayer
 
 @onready var player: Player = $World/Player
 @onready var camera_place_marker: Marker2D = $World/Player/CameraPlaceMarker
@@ -27,6 +33,8 @@ var placed_camera_before: bool = false
 
 
 func _ready() -> void:
+	if not OS.is_debug_build():
+		main_menu.show()
 	if main_menu.visible:
 		get_tree().paused = true
 	CameraUtilty.set_limits_from_rect(camera_2d, ground.get_global_rect())
@@ -38,7 +46,7 @@ func _unhandled_input(event: InputEvent) -> void:
 		get_tree().paused = true
 		pause_menu.show()
 		get_viewport().set_input_as_handled()
-	if event.is_action_pressed("camera"):
+	if event.is_action_pressed("camera") and pause_input_counter == 0:
 		if not camera_tool:
 			_place_camera()
 		elif screenshot_screen.visible:
@@ -55,8 +63,10 @@ func _place_camera() -> void:
 	camera_tool = CAMERA_TOOL_SCENE.instantiate()
 	camera_tool.global_position = camera_place_marker.global_position
 	camera_tool.photo_taken.connect(_on_camera_tool_photo_taken)
+	camera_tool.tree_exited.connect(_on_camera_tool_exit_tree)
 	world.add_child(camera_tool)
 	
+	player.toggle_packed_camera(false)
 	camera_tool.set_limits(ground.get_global_rect())
 	
 	if not placed_camera_before:
@@ -105,3 +115,16 @@ func _on_gallery_screen_closed() -> void:
 func _on_player_moved_for_first_time() -> void:
 	var tween := create_tween()
 	tween.tween_property(move_tutorial, "modulate:a", 0.0, 1)
+
+
+func _on_camera_tool_exit_tree() -> void:
+	player.toggle_packed_camera(true)
+
+
+func _on_crown_pedestal_crown_picked_up() -> void:
+	if victory:
+		return
+	
+	victory_audio_stream_player.play()
+	animation_player.play("victory")
+	victory = true

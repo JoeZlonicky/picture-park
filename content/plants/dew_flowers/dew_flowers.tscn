@@ -1,0 +1,27 @@
+[gd_scene load_steps=6 format=3 uid="uid://dsy4yqbpd7fwm"]
+
+[ext_resource type="Shader" uid="uid://jpickgb20rcm" path="res://shaders/sway.gdshader" id="1_6gga6"]
+[ext_resource type="Texture2D" uid="uid://ei3ibicu30sb" path="res://content/plants/dew_flowers/dew_flowers.svg" id="2_lob8q"]
+[ext_resource type="PackedScene" uid="uid://b3hrnwgsd1m5f" path="res://components/progress/photo_node.tscn" id="3_h2ewm"]
+[ext_resource type="Resource" uid="uid://gcfsvtahjj7v" path="res://content/plants/dew_flowers/dew_flowers.tres" id="4_lob8q"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_slrmu"]
+shader = ExtResource("1_6gga6")
+shader_parameter/speed = 0.25
+shader_parameter/frequency_y = 5.0
+shader_parameter/frequency_x = 5.0
+shader_parameter/amplitude_y = 10.0
+shader_parameter/amplitude_x = 5.0
+shader_parameter/inclination = 10.0
+shader_parameter/rotation_angle = 0.0
+
+[node name="DewFlowers" type="StaticBody2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+material = SubResource("ShaderMaterial_slrmu")
+position = Vector2(5, -119)
+texture = ExtResource("2_lob8q")
+
+[node name="PhotoNode" parent="." instance=ExtResource("3_h2ewm")]
+position = Vector2(10, -133)
+data = ExtResource("4_lob8q")

@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://6v441kyjyoan"]
+[gd_scene load_steps=35 format=3 uid="uid://6v441kyjyoan"]
 
 [ext_resource type="Script" uid="uid://ci2tgbe6003r3" path="res://content/scenes/game/game.gd" id="1_gve2d"]
 [ext_resource type="PackedScene" uid="uid://d34o2g1va8dgh" path="res://content/scenes/pause_menu/pause_menu.tscn" id="2_8eu2a"]
@@ -10,11 +10,85 @@
 [ext_resource type="Resource" uid="uid://ck6okwdbkcqc6" path="res://content/decorations/pedestal/pedestal.tres" id="4_781ya"]
 [ext_resource type="Resource" uid="uid://dok102da3n0pr" path="res://content/plants/circle_tree/circle_tree.tres" id="5_cmdph"]
 [ext_resource type="Texture2D" uid="uid://ccyrefpcp488l" path="res://content/decorations/ice_rink.svg" id="5_sr6ay"]
+[ext_resource type="PackedScene" uid="uid://by7j4iutullnw" path="res://content/scenes/dialogue_screen/dialogue_screen.tscn" id="6_cmdph"]
+[ext_resource type="Resource" uid="uid://b60h42dx35r4h" path="res://content/npcs/mr_penguin/mr_penguin.tres" id="6_sbbym"]
+[ext_resource type="AudioStream" uid="uid://4x8w1ilvi8n1" path="res://assets/sfx/victory.wav" id="7_k8wcc"]
 [ext_resource type="PackedScene" uid="uid://ce8dpxhayya51" path="res://content/plants/circle_tree/circle_tree.tscn" id="7_sr6ay"]
 [ext_resource type="PackedScene" uid="uid://qwomiwoorpkq" path="res://content/interactables/crown_pedestal/crown_pedestal.tscn" id="8_sk0bh"]
 [ext_resource type="PackedScene" uid="uid://ccrbgvhww66b6" path="res://content/scenes/gallery_screen/gallery_screen.tscn" id="9_6851e"]
 [ext_resource type="PackedScene" uid="uid://b507b45rnxi4s" path="res://content/interactables/book_pedestal/book_pedestal.tscn" id="9_b1pv3"]
 [ext_resource type="PackedScene" uid="uid://ch16dxpr3ebtr" path="res://components/input/fullscreen_toggle/fullscreen_toggle.tscn" id="10_781ya"]
+[ext_resource type="PackedScene" uid="uid://di7vg4mfn5vlh" path="res://content/npcs/mr_penguin/mr_penguin.tscn" id="13_5p7on"]
+[ext_resource type="PackedScene" uid="uid://cu3vlm00478w4" path="res://content/plants/coneifer_tree/coneifer_tree.tscn" id="18_hh5om"]
+[ext_resource type="PackedScene" uid="uid://cirxsjynwra38" path="res://content/plants/rhubarb_tree/rhubarb_tree.tscn" id="19_3211c"]
+[ext_resource type="AudioStream" uid="uid://duq6jubhxi4cx" path="res://assets/music/Noot.mp3" id="20_prmr5"]
+[ext_resource type="PackedScene" uid="uid://blv12aaplo5oq" path="res://content/plants/star_bush/star_bush.tscn" id="20_vwi1d"]
+[ext_resource type="PackedScene" uid="uid://d5l5ehqcjxf0" path="res://content/plants/crescent_bush/crescent_bush.tscn" id="21_dacgw"]
+[ext_resource type="PackedScene" uid="uid://dsy4yqbpd7fwm" path="res://content/plants/dew_flowers/dew_flowers.tscn" id="22_d5ix5"]
+[ext_resource type="PackedScene" uid="uid://c1hgk10rfw8hm" path="res://content/plants/power_flower/power_flowers.tscn" id="23_eusmi"]
+[ext_resource type="PackedScene" uid="uid://0vtgwnodbknu" path="res://content/plants/jewel_flowers/jewel_flowers.tscn" id="24_x7hgf"]
+
+[sub_resource type="Animation" id="Animation_sbbym"]
+resource_name = "victory"
+length = 7.0
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Label:modulate")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.7, 6, 7),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 7),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+
+[sub_resource type="Animation" id="Animation_k8wcc"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Label:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_k8wcc"]
+_data = {
+&"RESET": SubResource("Animation_k8wcc"),
+&"victory": SubResource("Animation_sbbym")
+}
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_axvww"]
 normal = Vector2(1, 0)
@@ -30,7 +104,7 @@ normal = Vector2(1, 0)
 
 [node name="Game" type="Node2D"]
 script = ExtResource("1_gve2d")
-all_photos = Array[ExtResource("2_ccpix")]([ExtResource("3_6851e"), ExtResource("4_781ya"), ExtResource("5_cmdph")])
+all_photos = Array[ExtResource("2_ccpix")]([ExtResource("3_6851e"), ExtResource("4_781ya"), ExtResource("5_cmdph"), ExtResource("6_sbbym")])
 
 [node name="HUD" type="CanvasLayer" parent="."]
 
@@ -42,6 +116,46 @@ offset_bottom = 44.333332
 theme_override_font_sizes/font_size = 32
 text = "x: 
 y: "
+
+[node name="VictoryScreen" type="CanvasLayer" parent="."]
+visible = false
+
+[node name="Label" type="Label" parent="VictoryScreen"]
+modulate = Color(1, 1, 1, 0)
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 233.33333
+grow_horizontal = 2
+theme_override_font_sizes/font_size = 200
+text = "You Win!"
+horizontal_alignment = 1
+
+[node name="Label2" type="Label" parent="VictoryScreen/Label"]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -17.000015
+offset_bottom = 38.999985
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_font_sizes/font_size = 48
+text = "Thanks for playing! Feel free to keep waddling around!"
+horizontal_alignment = 1
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="VictoryScreen"]
+libraries = {
+&"": SubResource("AnimationLibrary_k8wcc")
+}
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="VictoryScreen"]
+stream = ExtResource("7_k8wcc")
+pitch_scale = 1.2
+bus = &"SFX"
+
+[node name="DialogueScreen" parent="." instance=ExtResource("6_cmdph")]
+visible = false
 
 [node name="MainMenu" parent="." instance=ExtResource("2_bnayj")]
 process_mode = 3
@@ -61,31 +175,31 @@ visible = false
 input_name = &"fullscreen"
 
 [node name="Ground" type="ColorRect" parent="."]
-offset_left = -15602.0
-offset_top = -9238.0
-offset_right = 20207.0
-offset_bottom = 10461.0
+offset_left = -5000.0
+offset_top = -5000.0
+offset_right = 5000.0
+offset_bottom = 5000.0
 color = Color(0.13725491, 0.5647059, 0.3882353, 1)
 
 [node name="StaticBody2D" type="StaticBody2D" parent="Ground"]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Ground/StaticBody2D"]
-position = Vector2(15602, 0)
+position = Vector2(5000, 0)
 rotation = 1.5707964
 shape = SubResource("WorldBoundaryShape2D_axvww")
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="Ground/StaticBody2D"]
-position = Vector2(35809, 9237)
+position = Vector2(9999, 5001)
 rotation = -3.1415927
 shape = SubResource("WorldBoundaryShape2D_ol851")
 
 [node name="CollisionShape2D3" type="CollisionShape2D" parent="Ground/StaticBody2D"]
-position = Vector2(15601, 19699)
+position = Vector2(4999, 9999)
 rotation = -1.5707964
 shape = SubResource("WorldBoundaryShape2D_ccpix")
 
 [node name="CollisionShape2D4" type="CollisionShape2D" parent="Ground/StaticBody2D"]
-position = Vector2(0, 9238)
+position = Vector2(2, 4988)
 shape = SubResource("WorldBoundaryShape2D_sk0bh")
 
 [node name="IceRink" type="Sprite2D" parent="."]
@@ -107,12 +221,15 @@ offset_top = 326.0
 offset_right = 450.0
 offset_bottom = 363.33334
 theme_override_font_sizes/font_size = 32
-text = "Space to place
+text = "[Space] to place
 camera!"
 horizontal_alignment = 1
 
 [node name="World" type="Node2D" parent="."]
 y_sort_enabled = true
+
+[node name="MrPenguin" parent="World" instance=ExtResource("13_5p7on")]
+position = Vector2(3, -342)
 
 [node name="Player" parent="World" instance=ExtResource("3_venge")]
 position = Vector2(-15, 492)
@@ -124,8 +241,593 @@ position_smoothing_enabled = true
 [node name="CameraPlaceMarker" type="Marker2D" parent="World/Player"]
 position = Vector2(1, 90)
 
-[node name="CircleTree" parent="World" instance=ExtResource("7_sr6ay")]
-position = Vector2(-931, 69)
+[node name="Trees" type="Node2D" parent="World"]
+y_sort_enabled = true
+
+[node name="CircleTree" parent="World/Trees" instance=ExtResource("7_sr6ay")]
+position = Vector2(-1769, -1152)
+
+[node name="CircleTree62" parent="World/Trees" instance=ExtResource("7_sr6ay")]
+position = Vector2(-1611, -1270)
+
+[node name="CircleTree2" parent="World/Trees" instance=ExtResource("7_sr6ay")]
+position = Vector2(114, -1768)
+
+[node name="CircleTree3" parent="World/Trees" instance=ExtResource("7_sr6ay")]
+position = Vector2(2306, -1751)
+
+[node name="CircleTree4" parent="World/Trees" instance=ExtResource("7_sr6ay")]
+position = Vector2(1434, -352)
+
+[node name="CircleTree5" parent="World/Trees" instance=ExtResource("7_sr6ay")]
+position = Vector2(1006, 1829)
+
+[node name="CircleTree7" parent="World/Trees" instance=ExtResource("7_sr6ay")]
+position = Vector2(2559, 730)
+
+[node name="CircleTree8" parent="World/Trees" instance=ExtResource("7_sr6ay")]
+position = Vector2(3693, -509)
+
+[node name="CircleTree9" parent="World/Trees" instance=ExtResource("7_sr6ay")]
+position = Vector2(1128, -3196)
+
+[node name="CircleTree10" parent="World/Trees" instance=ExtResource("7_sr6ay")]
+position = Vector2(-1420, -3388)
+
+[node name="CircleTree11" parent="World/Trees" instance=ExtResource("7_sr6ay")]
+position = Vector2(-3758, -20)
+
+[node name="CircleTree12" parent="World/Trees" instance=ExtResource("7_sr6ay")]
+position = Vector2(-3357, 2912)
+
+[node name="CircleTree13" parent="World/Trees" instance=ExtResource("7_sr6ay")]
+position = Vector2(-757, 4081)
+
+[node name="CircleTree14" parent="World/Trees" instance=ExtResource("7_sr6ay")]
+position = Vector2(2140, 4290)
+
+[node name="CircleTree15" parent="World/Trees" instance=ExtResource("7_sr6ay")]
+position = Vector2(4042, 2126)
+
+[node name="CircleTree16" parent="World/Trees" instance=ExtResource("7_sr6ay")]
+position = Vector2(-3601, -2620)
+
+[node name="CircleTree17" parent="World/Trees" instance=ExtResource("7_sr6ay")]
+position = Vector2(3082, -4470)
+
+[node name="CircleTree18" parent="World/Trees" instance=ExtResource("7_sr6ay")]
+position = Vector2(4565, -2708)
+
+[node name="CircleTree19" parent="World/Trees" instance=ExtResource("7_sr6ay")]
+position = Vector2(-2607, -4889)
+
+[node name="CircleTree20" parent="World/Trees" instance=ExtResource("7_sr6ay")]
+position = Vector2(-4439, 4778)
+
+[node name="CircleTree21" parent="World/Trees" instance=ExtResource("7_sr6ay")]
+position = Vector2(3867, 5022)
+
+[node name="CircleTree22" parent="World/Trees" instance=ExtResource("7_sr6ay")]
+position = Vector2(-5037, -3523)
+
+[node name="CircleTree23" parent="World/Trees" instance=ExtResource("7_sr6ay")]
+position = Vector2(-4805, 1958)
+
+[node name="CircleTree24" parent="World/Trees" instance=ExtResource("7_sr6ay")]
+position = Vector2(-2292, 5210)
+
+[node name="CircleTree6" parent="World/Trees" instance=ExtResource("7_sr6ay")]
+position = Vector2(-1409, 1312)
+
+[node name="CircleTree25" parent="World/Trees" instance=ExtResource("7_sr6ay")]
+position = Vector2(-2463, 1558)
+
+[node name="CircleTree57" parent="World/Trees" instance=ExtResource("7_sr6ay")]
+position = Vector2(-2928, 671)
+
+[node name="CircleTree58" parent="World/Trees" instance=ExtResource("7_sr6ay")]
+position = Vector2(-2168, 629)
+
+[node name="CircleTree59" parent="World/Trees" instance=ExtResource("7_sr6ay")]
+position = Vector2(-405, -2973)
+
+[node name="CircleTree60" parent="World/Trees" instance=ExtResource("7_sr6ay")]
+position = Vector2(1715, -1926)
+
+[node name="CircleTree26" parent="World/Trees" instance=ExtResource("7_sr6ay")]
+position = Vector2(-2256, 3912)
+
+[node name="CircleTree27" parent="World/Trees" instance=ExtResource("7_sr6ay")]
+position = Vector2(-897, 3360)
+
+[node name="CircleTree28" parent="World/Trees" instance=ExtResource("7_sr6ay")]
+position = Vector2(-355, 1892)
+
+[node name="CircleTree29" parent="World/Trees" instance=ExtResource("7_sr6ay")]
+position = Vector2(-2635, 2541)
+
+[node name="CircleTree61" parent="World/Trees" instance=ExtResource("7_sr6ay")]
+position = Vector2(-2468, 2511)
+
+[node name="CircleTree30" parent="World/Trees" instance=ExtResource("7_sr6ay")]
+position = Vector2(-2528, 38)
+
+[node name="CircleTree31" parent="World/Trees" instance=ExtResource("7_sr6ay")]
+position = Vector2(-1026, -510)
+
+[node name="CircleTree32" parent="World/Trees" instance=ExtResource("7_sr6ay")]
+position = Vector2(917, -1165)
+
+[node name="CircleTree63" parent="World/Trees" instance=ExtResource("7_sr6ay")]
+position = Vector2(1155, -943)
+
+[node name="CircleTree33" parent="World/Trees" instance=ExtResource("7_sr6ay")]
+position = Vector2(-96, -3132)
+
+[node name="CircleTree34" parent="World/Trees" instance=ExtResource("7_sr6ay")]
+position = Vector2(-3230, -1761)
+
+[node name="CircleTree35" parent="World/Trees" instance=ExtResource("7_sr6ay")]
+position = Vector2(-4636, -1797)
+
+[node name="CircleTree36" parent="World/Trees" instance=ExtResource("7_sr6ay")]
+position = Vector2(-3027, -3895)
+
+[node name="CircleTree37" parent="World/Trees" instance=ExtResource("7_sr6ay")]
+position = Vector2(2360, -2775)
+
+[node name="CircleTree38" parent="World/Trees" instance=ExtResource("7_sr6ay")]
+position = Vector2(1418, -2227)
+
+[node name="CircleTree39" parent="World/Trees" instance=ExtResource("7_sr6ay")]
+position = Vector2(2503, -582)
+
+[node name="CircleTree40" parent="World/Trees" instance=ExtResource("7_sr6ay")]
+position = Vector2(1395, 646)
+
+[node name="CircleTree64" parent="World/Trees" instance=ExtResource("7_sr6ay")]
+position = Vector2(665, 1106)
+
+[node name="CircleTree65" parent="World/Trees" instance=ExtResource("7_sr6ay")]
+position = Vector2(-636, 1058)
+
+[node name="CircleTree66" parent="World/Trees" instance=ExtResource("7_sr6ay")]
+position = Vector2(-271, -1163)
+
+[node name="CircleTree67" parent="World/Trees" instance=ExtResource("7_sr6ay")]
+position = Vector2(760, -513)
+
+[node name="CircleTree41" parent="World/Trees" instance=ExtResource("7_sr6ay")]
+position = Vector2(-1537, 455)
+
+[node name="CircleTree42" parent="World/Trees" instance=ExtResource("7_sr6ay")]
+position = Vector2(-3739, 1648)
+
+[node name="CircleTree43" parent="World/Trees" instance=ExtResource("7_sr6ay")]
+position = Vector2(-4539, 3287)
+
+[node name="CircleTree44" parent="World/Trees" instance=ExtResource("7_sr6ay")]
+position = Vector2(-1052, 5136)
+
+[node name="CircleTree45" parent="World/Trees" instance=ExtResource("7_sr6ay")]
+position = Vector2(-3359, 5070)
+
+[node name="CircleTree46" parent="World/Trees" instance=ExtResource("7_sr6ay")]
+position = Vector2(967, 5109)
+
+[node name="CircleTree47" parent="World/Trees" instance=ExtResource("7_sr6ay")]
+position = Vector2(23, 5017)
+
+[node name="CircleTree48" parent="World/Trees" instance=ExtResource("7_sr6ay")]
+position = Vector2(1989, 1451)
+
+[node name="CircleTree49" parent="World/Trees" instance=ExtResource("7_sr6ay")]
+position = Vector2(3562, 1307)
+
+[node name="CircleTree50" parent="World/Trees" instance=ExtResource("7_sr6ay")]
+position = Vector2(3378, 114)
+
+[node name="CircleTree51" parent="World/Trees" instance=ExtResource("7_sr6ay")]
+position = Vector2(4676, -1197)
+
+[node name="CircleTree52" parent="World/Trees" instance=ExtResource("7_sr6ay")]
+position = Vector2(3457, -1590)
+
+[node name="CircleTree53" parent="World/Trees" instance=ExtResource("7_sr6ay")]
+position = Vector2(1481, -4417)
+
+[node name="CircleTree54" parent="World/Trees" instance=ExtResource("7_sr6ay")]
+position = Vector2(-2876, -847)
+
+[node name="CircleTree55" parent="World/Trees" instance=ExtResource("7_sr6ay")]
+position = Vector2(4341, 3471)
+
+[node name="CircleTree56" parent="World/Trees" instance=ExtResource("7_sr6ay")]
+position = Vector2(617, 2953)
+
+[node name="ConeiferTree" parent="World/Trees" instance=ExtResource("18_hh5om")]
+position = Vector2(-4032, -1568)
+
+[node name="ConeiferTree2" parent="World/Trees" instance=ExtResource("18_hh5om")]
+position = Vector2(-3927, -3906)
+
+[node name="ConeiferTree3" parent="World/Trees" instance=ExtResource("18_hh5om")]
+position = Vector2(-1728, -4290)
+
+[node name="ConeiferTree4" parent="World/Trees" instance=ExtResource("18_hh5om")]
+position = Vector2(610, -3924)
+
+[node name="ConeiferTree5" parent="World/Trees" instance=ExtResource("18_hh5om")]
+position = Vector2(2372, -4447)
+
+[node name="ConeiferTree6" parent="World/Trees" instance=ExtResource("18_hh5om")]
+position = Vector2(4082, -3889)
+
+[node name="ConeiferTree7" parent="World/Trees" instance=ExtResource("18_hh5om")]
+position = Vector2(4169, -1586)
+
+[node name="ConeiferTree8" parent="World/Trees" instance=ExtResource("18_hh5om")]
+position = Vector2(4553, 560)
+
+[node name="ConeiferTree9" parent="World/Trees" instance=ExtResource("18_hh5om")]
+position = Vector2(3977, 3038)
+
+[node name="ConeiferTree33" parent="World/Trees" instance=ExtResource("18_hh5om")]
+position = Vector2(4110, 2927)
+
+[node name="ConeiferTree10" parent="World/Trees" instance=ExtResource("18_hh5om")]
+position = Vector2(2756, 4574)
+
+[node name="ConeiferTree34" parent="World/Trees" instance=ExtResource("18_hh5om")]
+position = Vector2(2933, 4485)
+
+[node name="ConeiferTree11" parent="World/Trees" instance=ExtResource("18_hh5om")]
+position = Vector2(837, 3911)
+
+[node name="ConeiferTree15" parent="World/Trees" instance=ExtResource("18_hh5om")]
+position = Vector2(-1562, 4429)
+
+[node name="ConeiferTree16" parent="World/Trees" instance=ExtResource("18_hh5om")]
+position = Vector2(-4691, 3911)
+
+[node name="ConeiferTree17" parent="World/Trees" instance=ExtResource("18_hh5om")]
+position = Vector2(-4269, 1454)
+
+[node name="ConeiferTree18" parent="World/Trees" instance=ExtResource("18_hh5om")]
+position = Vector2(-4346, -830)
+
+[node name="ConeiferTree19" parent="World/Trees" instance=ExtResource("18_hh5om")]
+position = Vector2(-4519, -3172)
+
+[node name="ConeiferTree20" parent="World/Trees" instance=ExtResource("18_hh5om")]
+position = Vector2(-3291, -4612)
+
+[node name="ConeiferTree21" parent="World/Trees" instance=ExtResource("18_hh5om")]
+position = Vector2(-4193, -4958)
+
+[node name="ConeiferTree22" parent="World/Trees" instance=ExtResource("18_hh5om")]
+position = Vector2(-4942, -4363)
+
+[node name="ConeiferTree23" parent="World/Trees" instance=ExtResource("18_hh5om")]
+position = Vector2(3945, -4977)
+
+[node name="ConeiferTree24" parent="World/Trees" instance=ExtResource("18_hh5om")]
+position = Vector2(4924, -3902)
+
+[node name="ConeiferTree25" parent="World/Trees" instance=ExtResource("18_hh5om")]
+position = Vector2(4886, -2366)
+
+[node name="ConeiferTree26" parent="World/Trees" instance=ExtResource("18_hh5om")]
+position = Vector2(4790, 2125)
+
+[node name="ConeiferTree27" parent="World/Trees" instance=ExtResource("18_hh5om")]
+position = Vector2(4886, 4275)
+
+[node name="ConeiferTree28" parent="World/Trees" instance=ExtResource("18_hh5om")]
+position = Vector2(1585, 4985)
+
+[node name="ConeiferTree29" parent="World/Trees" instance=ExtResource("18_hh5om")]
+position = Vector2(-3962, 4966)
+
+[node name="ConeiferTree30" parent="World/Trees" instance=ExtResource("18_hh5om")]
+position = Vector2(-4941, 4947)
+
+[node name="ConeiferTree31" parent="World/Trees" instance=ExtResource("18_hh5om")]
+position = Vector2(3274, 5024)
+
+[node name="ConeiferTree32" parent="World/Trees" instance=ExtResource("18_hh5om")]
+position = Vector2(4445, 4890)
+
+[node name="ConeiferTree12" parent="World/Trees" instance=ExtResource("18_hh5om")]
+position = Vector2(-3037, 4382)
+
+[node name="ConeiferTree13" parent="World/Trees" instance=ExtResource("18_hh5om")]
+position = Vector2(-4311, 2812)
+
+[node name="ConeiferTree14" parent="World/Trees" instance=ExtResource("18_hh5om")]
+position = Vector2(-3857, 770)
+
+[node name="RhubarbTree" parent="World/Trees" instance=ExtResource("19_3211c")]
+position = Vector2(2477, 1853)
+
+[node name="RhubarbTree2" parent="World/Trees" instance=ExtResource("19_3211c")]
+position = Vector2(3334, 2075)
+
+[node name="RhubarbTree8" parent="World/Trees" instance=ExtResource("19_3211c")]
+position = Vector2(3540, 2234)
+
+[node name="RhubarbTree3" parent="World/Trees" instance=ExtResource("19_3211c")]
+position = Vector2(1510, 2614)
+
+[node name="RhubarbTree6" parent="World/Trees" instance=ExtResource("19_3211c")]
+position = Vector2(1700, 2392)
+
+[node name="RhubarbTree7" parent="World/Trees" instance=ExtResource("19_3211c")]
+position = Vector2(1351, 2392)
+
+[node name="RhubarbTree4" parent="World/Trees" instance=ExtResource("19_3211c")]
+position = Vector2(2160, 3550)
+
+[node name="RhubarbTree9" parent="World/Trees" instance=ExtResource("19_3211c")]
+position = Vector2(2430, 3629)
+
+[node name="RhubarbTree5" parent="World/Trees" instance=ExtResource("19_3211c")]
+position = Vector2(3207, 3376)
+
+[node name="Bushes" type="Node2D" parent="World"]
+y_sort_enabled = true
+
+[node name="StarBush" parent="World/Bushes" instance=ExtResource("20_vwi1d")]
+position = Vector2(-2453, -1664)
+
+[node name="StarBush2" parent="World/Bushes" instance=ExtResource("20_vwi1d")]
+position = Vector2(-1126, -2010)
+
+[node name="StarBush3" parent="World/Bushes" instance=ExtResource("20_vwi1d")]
+position = Vector2(-1025, -3293)
+
+[node name="StarBush8" parent="World/Bushes" instance=ExtResource("20_vwi1d")]
+position = Vector2(-857, -3333)
+
+[node name="StarBush4" parent="World/Bushes" instance=ExtResource("20_vwi1d")]
+position = Vector2(-2265, -3855)
+
+[node name="StarBush5" parent="World/Bushes" instance=ExtResource("20_vwi1d")]
+position = Vector2(-3217, -2831)
+
+[node name="StarBush6" parent="World/Bushes" instance=ExtResource("20_vwi1d")]
+position = Vector2(-3035, -2766)
+
+[node name="StarBush7" parent="World/Bushes" instance=ExtResource("20_vwi1d")]
+position = Vector2(-2853, -2827)
+
+[node name="CrescentBush" parent="World/Bushes" instance=ExtResource("21_dacgw")]
+position = Vector2(3125, -4012)
+
+[node name="CrescentBush9" parent="World/Bushes" instance=ExtResource("21_dacgw")]
+position = Vector2(3309, -4081)
+
+[node name="CrescentBush2" parent="World/Bushes" instance=ExtResource("21_dacgw")]
+position = Vector2(2195, -3845)
+
+[node name="CrescentBush3" parent="World/Bushes" instance=ExtResource("21_dacgw")]
+position = Vector2(1587, -2987)
+
+[node name="CrescentBush7" parent="World/Bushes" instance=ExtResource("21_dacgw")]
+position = Vector2(1425, -3059)
+
+[node name="CrescentBush8" parent="World/Bushes" instance=ExtResource("21_dacgw")]
+position = Vector2(1245, -2969)
+
+[node name="CrescentBush4" parent="World/Bushes" instance=ExtResource("21_dacgw")]
+position = Vector2(2719, -1807)
+
+[node name="CrescentBush5" parent="World/Bushes" instance=ExtResource("21_dacgw")]
+position = Vector2(3804, -2272)
+
+[node name="CrescentBush10" parent="World/Bushes" instance=ExtResource("21_dacgw")]
+position = Vector2(3593, -2313)
+
+[node name="CrescentBush6" parent="World/Bushes" instance=ExtResource("21_dacgw")]
+position = Vector2(4269, -3380)
+
+[node name="Flowers" type="Node2D" parent="World"]
+y_sort_enabled = true
+
+[node name="DewFlowers" parent="World/Flowers" instance=ExtResource("22_d5ix5")]
+position = Vector2(-1915, 1518)
+
+[node name="DewFlowers7" parent="World/Flowers" instance=ExtResource("22_d5ix5")]
+position = Vector2(-1754, 1467)
+
+[node name="DewFlowers8" parent="World/Flowers" instance=ExtResource("22_d5ix5")]
+position = Vector2(-1607, 1536)
+
+[node name="DewFlowers9" parent="World/Flowers" instance=ExtResource("22_d5ix5")]
+position = Vector2(-2682, 3199)
+
+[node name="DewFlowers10" parent="World/Flowers" instance=ExtResource("22_d5ix5")]
+position = Vector2(-692, 2703)
+
+[node name="DewFlowers2" parent="World/Flowers" instance=ExtResource("22_d5ix5")]
+position = Vector2(-993, 1724)
+
+[node name="DewFlowers3" parent="World/Flowers" instance=ExtResource("22_d5ix5")]
+position = Vector2(-563, 2628)
+
+[node name="DewFlowers4" parent="World/Flowers" instance=ExtResource("22_d5ix5")]
+position = Vector2(-1700, 3568)
+
+[node name="DewFlowers5" parent="World/Flowers" instance=ExtResource("22_d5ix5")]
+position = Vector2(-2810, 3308)
+
+[node name="DewFlowers6" parent="World/Flowers" instance=ExtResource("22_d5ix5")]
+position = Vector2(-2908, 1947)
+
+[node name="PowerFlowers" parent="World/Flowers" instance=ExtResource("23_eusmi")]
+position = Vector2(-17, -4642)
+
+[node name="PowerFlowers2" parent="World/Flowers" instance=ExtResource("23_eusmi")]
+position = Vector2(-558, -4433)
+
+[node name="PowerFlowers20" parent="World/Flowers" instance=ExtResource("23_eusmi")]
+position = Vector2(-354, -4628)
+
+[node name="PowerFlowers21" parent="World/Flowers" instance=ExtResource("23_eusmi")]
+position = Vector2(354, -4677)
+
+[node name="PowerFlowers22" parent="World/Flowers" instance=ExtResource("23_eusmi")]
+position = Vector2(-362, -4213)
+
+[node name="PowerFlowers23" parent="World/Flowers" instance=ExtResource("23_eusmi")]
+position = Vector2(29, -4091)
+
+[node name="PowerFlowers24" parent="World/Flowers" instance=ExtResource("23_eusmi")]
+position = Vector2(330, -4221)
+
+[node name="PowerFlowers3" parent="World/Flowers" instance=ExtResource("23_eusmi")]
+position = Vector2(482, -4404)
+
+[node name="PowerFlowers4" parent="World/Flowers" instance=ExtResource("23_eusmi")]
+position = Vector2(4638, -311)
+
+[node name="PowerFlowers5" parent="World/Flowers" instance=ExtResource("23_eusmi")]
+position = Vector2(4226, 22)
+
+[node name="PowerFlowers30" parent="World/Flowers" instance=ExtResource("23_eusmi")]
+position = Vector2(4194, -517)
+
+[node name="PowerFlowers31" parent="World/Flowers" instance=ExtResource("23_eusmi")]
+position = Vector2(3845, -25)
+
+[node name="PowerFlowers6" parent="World/Flowers" instance=ExtResource("23_eusmi")]
+position = Vector2(4702, 1021)
+
+[node name="PowerFlowers7" parent="World/Flowers" instance=ExtResource("23_eusmi")]
+position = Vector2(4179, 561)
+
+[node name="PowerFlowers8" parent="World/Flowers" instance=ExtResource("23_eusmi")]
+position = Vector2(-600, 4726)
+
+[node name="PowerFlowers9" parent="World/Flowers" instance=ExtResource("23_eusmi")]
+position = Vector2(14, 4265)
+
+[node name="PowerFlowers14" parent="World/Flowers" instance=ExtResource("23_eusmi")]
+position = Vector2(-123, 4314)
+
+[node name="PowerFlowers15" parent="World/Flowers" instance=ExtResource("23_eusmi")]
+position = Vector2(108, 4314)
+
+[node name="PowerFlowers16" parent="World/Flowers" instance=ExtResource("23_eusmi")]
+position = Vector2(-520, 4648)
+
+[node name="PowerFlowers17" parent="World/Flowers" instance=ExtResource("23_eusmi")]
+position = Vector2(-688, 4634)
+
+[node name="PowerFlowers18" parent="World/Flowers" instance=ExtResource("23_eusmi")]
+position = Vector2(276, 4563)
+
+[node name="PowerFlowers19" parent="World/Flowers" instance=ExtResource("23_eusmi")]
+position = Vector2(-215, 4737)
+
+[node name="PowerFlowers10" parent="World/Flowers" instance=ExtResource("23_eusmi")]
+position = Vector2(628, 4687)
+
+[node name="PowerFlowers11" parent="World/Flowers" instance=ExtResource("23_eusmi")]
+position = Vector2(-4842, -611)
+
+[node name="PowerFlowers12" parent="World/Flowers" instance=ExtResource("23_eusmi")]
+position = Vector2(-4343, -112)
+
+[node name="PowerFlowers25" parent="World/Flowers" instance=ExtResource("23_eusmi")]
+position = Vector2(-4502, -445)
+
+[node name="PowerFlowers26" parent="World/Flowers" instance=ExtResource("23_eusmi")]
+position = Vector2(-4883, -175)
+
+[node name="PowerFlowers27" parent="World/Flowers" instance=ExtResource("23_eusmi")]
+position = Vector2(-4597, 190)
+
+[node name="PowerFlowers28" parent="World/Flowers" instance=ExtResource("23_eusmi")]
+position = Vector2(-4232, 285)
+
+[node name="PowerFlowers29" parent="World/Flowers" instance=ExtResource("23_eusmi")]
+position = Vector2(-4914, 301)
+
+[node name="PowerFlowers13" parent="World/Flowers" instance=ExtResource("23_eusmi")]
+position = Vector2(-4746, 598)
+
+[node name="JewelFlowers" parent="World/Flowers" instance=ExtResource("24_x7hgf")]
+position = Vector2(-4543, -4604)
+
+[node name="JewelFlowers20" parent="World/Flowers" instance=ExtResource("24_x7hgf")]
+position = Vector2(-4388, -4854)
+
+[node name="JewelFlowers21" parent="World/Flowers" instance=ExtResource("24_x7hgf")]
+position = Vector2(-4817, -4747)
+
+[node name="JewelFlowers22" parent="World/Flowers" instance=ExtResource("24_x7hgf")]
+position = Vector2(-4698, -4330)
+
+[node name="JewelFlowers23" parent="World/Flowers" instance=ExtResource("24_x7hgf")]
+position = Vector2(-4126, -4592)
+
+[node name="JewelFlowers24" parent="World/Flowers" instance=ExtResource("24_x7hgf")]
+position = Vector2(-4333, -4362)
+
+[node name="JewelFlowers2" parent="World/Flowers" instance=ExtResource("24_x7hgf")]
+position = Vector2(4528, -4618)
+
+[node name="JewelFlowers15" parent="World/Flowers" instance=ExtResource("24_x7hgf")]
+position = Vector2(4438, -4779)
+
+[node name="JewelFlowers16" parent="World/Flowers" instance=ExtResource("24_x7hgf")]
+position = Vector2(4223, -4618)
+
+[node name="JewelFlowers17" parent="World/Flowers" instance=ExtResource("24_x7hgf")]
+position = Vector2(4447, -4340)
+
+[node name="JewelFlowers18" parent="World/Flowers" instance=ExtResource("24_x7hgf")]
+position = Vector2(4823, -4465)
+
+[node name="JewelFlowers19" parent="World/Flowers" instance=ExtResource("24_x7hgf")]
+position = Vector2(4814, -4734)
+
+[node name="JewelFlowers3" parent="World/Flowers" instance=ExtResource("24_x7hgf")]
+position = Vector2(-3995, 3905)
+
+[node name="JewelFlowers5" parent="World/Flowers" instance=ExtResource("24_x7hgf")]
+position = Vector2(-3864, 3829)
+
+[node name="JewelFlowers6" parent="World/Flowers" instance=ExtResource("24_x7hgf")]
+position = Vector2(-3698, 3919)
+
+[node name="JewelFlowers7" parent="World/Flowers" instance=ExtResource("24_x7hgf")]
+position = Vector2(-3850, 4085)
+
+[node name="JewelFlowers8" parent="World/Flowers" instance=ExtResource("24_x7hgf")]
+position = Vector2(-4105, 4106)
+
+[node name="JewelFlowers9" parent="World/Flowers" instance=ExtResource("24_x7hgf")]
+position = Vector2(-4164, 3757)
+
+[node name="JewelFlowers10" parent="World/Flowers" instance=ExtResource("24_x7hgf")]
+position = Vector2(-3701, 3664)
+
+[node name="JewelFlowers11" parent="World/Flowers" instance=ExtResource("24_x7hgf")]
+position = Vector2(-3532, 4058)
+
+[node name="JewelFlowers4" parent="World/Flowers" instance=ExtResource("24_x7hgf")]
+position = Vector2(4167, 4165)
+
+[node name="JewelFlowers12" parent="World/Flowers" instance=ExtResource("24_x7hgf")]
+position = Vector2(4305, 3998)
+
+[node name="JewelFlowers13" parent="World/Flowers" instance=ExtResource("24_x7hgf")]
+position = Vector2(4025, 4019)
+
+[node name="JewelFlowers14" parent="World/Flowers" instance=ExtResource("24_x7hgf")]
+position = Vector2(3883, 4157)
 
 [node name="CrownPedestal" parent="World" instance=ExtResource("8_sk0bh")]
 position = Vector2(-156, 3)
@@ -133,9 +835,18 @@ position = Vector2(-156, 3)
 [node name="BookPedestal" parent="World" instance=ExtResource("9_b1pv3")]
 position = Vector2(159, 1)
 
+[node name="Music" type="AudioStreamPlayer" parent="."]
+process_mode = 3
+stream = ExtResource("20_prmr5")
+volume_db = -20.0
+autoplay = true
+bus = &"Music"
+parameters/looping = true
+
 [connection signal="closed" from="MainMenu" to="." method="_on_main_menu_closed"]
 [connection signal="closed" from="ScreenshotScreen" to="." method="_on_screenshot_screen_closed"]
 [connection signal="closed" from="GalleryScreen" to="." method="_on_gallery_screen_closed"]
 [connection signal="view_request" from="GalleryScreen" to="." method="_on_gallery_screen_view_request"]
 [connection signal="moved_for_first_time" from="World/Player" to="." method="_on_player_moved_for_first_time"]
+[connection signal="crown_picked_up" from="World/CrownPedestal" to="." method="_on_crown_pedestal_crown_picked_up"]
 [connection signal="opened" from="World/BookPedestal" to="." method="_on_book_pedestal_opened"]

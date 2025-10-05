@@ -1,0 +1,27 @@
+[gd_scene load_steps=6 format=3 uid="uid://0vtgwnodbknu"]
+
+[ext_resource type="Shader" uid="uid://jpickgb20rcm" path="res://shaders/sway.gdshader" id="1_46e7t"]
+[ext_resource type="Texture2D" uid="uid://xly5bvwig6ve" path="res://content/plants/jewel_flowers/jewel_flowers.svg" id="2_4urfx"]
+[ext_resource type="PackedScene" uid="uid://b3hrnwgsd1m5f" path="res://components/progress/photo_node.tscn" id="3_2sgra"]
+[ext_resource type="Resource" uid="uid://dircfvv7damwx" path="res://content/plants/jewel_flowers/jewel_flowers.tres" id="4_4urfx"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_slrmu"]
+shader = ExtResource("1_46e7t")
+shader_parameter/speed = 0.25
+shader_parameter/frequency_y = 5.0
+shader_parameter/frequency_x = 5.0
+shader_parameter/amplitude_y = 10.0
+shader_parameter/amplitude_x = 5.0
+shader_parameter/inclination = 10.0
+shader_parameter/rotation_angle = 0.0
+
+[node name="JewelFlowers" type="StaticBody2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+material = SubResource("ShaderMaterial_slrmu")
+position = Vector2(2, -79)
+texture = ExtResource("2_4urfx")
+
+[node name="PhotoNode" parent="." instance=ExtResource("3_2sgra")]
+position = Vector2(4, -108)
+data = ExtResource("4_4urfx")

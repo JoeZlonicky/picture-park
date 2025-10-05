@@ -1,0 +1,27 @@
+[gd_scene load_steps=6 format=3 uid="uid://c1hgk10rfw8hm"]
+
+[ext_resource type="Shader" uid="uid://jpickgb20rcm" path="res://shaders/sway.gdshader" id="1_p88ta"]
+[ext_resource type="Texture2D" uid="uid://cj150ur0fl014" path="res://content/plants/power_flower/power_flower.svg" id="2_rlca2"]
+[ext_resource type="PackedScene" uid="uid://b3hrnwgsd1m5f" path="res://components/progress/photo_node.tscn" id="3_d7e3w"]
+[ext_resource type="Resource" uid="uid://f30hepdnuu15" path="res://content/plants/power_flower/power_flowers.tres" id="4_rlca2"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_slrmu"]
+shader = ExtResource("1_p88ta")
+shader_parameter/speed = 0.25
+shader_parameter/frequency_y = 5.0
+shader_parameter/frequency_x = 5.0
+shader_parameter/amplitude_y = 10.0
+shader_parameter/amplitude_x = 5.0
+shader_parameter/inclination = 10.0
+shader_parameter/rotation_angle = 0.0
+
+[node name="PowerFlowers" type="StaticBody2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+material = SubResource("ShaderMaterial_slrmu")
+position = Vector2(-1, -87)
+texture = ExtResource("2_rlca2")
+
+[node name="PhotoNode" parent="." instance=ExtResource("3_d7e3w")]
+position = Vector2(3, -113)
+data = ExtResource("4_rlca2")

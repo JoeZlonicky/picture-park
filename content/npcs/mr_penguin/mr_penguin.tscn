@@ -1,0 +1,30 @@
+[gd_scene load_steps=7 format=3 uid="uid://di7vg4mfn5vlh"]
+
+[ext_resource type="Script" uid="uid://ck4b5k15x766r" path="res://content/npcs/mr_penguin/mr_penguin.gd" id="1_xxfr2"]
+[ext_resource type="Texture2D" uid="uid://ribqyi57bee1" path="res://content/npcs/mr_penguin/mr_penguin.svg" id="1_yp3ig"]
+[ext_resource type="PackedScene" uid="uid://c6nb2lq8q6ydx" path="res://components/general/npc_trigger/npc_trigger.tscn" id="2_l3aw5"]
+[ext_resource type="PackedScene" uid="uid://b3hrnwgsd1m5f" path="res://components/progress/photo_node.tscn" id="4_ltf3t"]
+[ext_resource type="Resource" uid="uid://b60h42dx35r4h" path="res://content/npcs/mr_penguin/mr_penguin.tres" id="5_5upc2"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_sbbym"]
+radius = 16.0
+height = 126.0
+
+[node name="MrPenguin" type="StaticBody2D"]
+script = ExtResource("1_xxfr2")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(-1, -145.5)
+texture = ExtResource("1_yp3ig")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-1, -7)
+rotation = 1.5707964
+shape = SubResource("CapsuleShape2D_sbbym")
+
+[node name="NPCTrigger" parent="." instance=ExtResource("2_l3aw5")]
+
+[node name="PhotoNode" parent="." instance=ExtResource("4_ltf3t")]
+data = ExtResource("5_5upc2")
+
+[connection signal="interacted_with" from="NPCTrigger" to="." method="_on_npc_trigger_interacted_with"]

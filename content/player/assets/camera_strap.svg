@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   width="110.76003"
+   height="95.554642"
+   viewBox="0 0 110.76003 95.554642"
+   version="1.1"
+   id="svg1"
+   inkscape:version="1.4 (86a8ad7, 2024-10-11)"
+   sodipodi:docname="camera_strap.svg"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview
+     id="namedview1"
+     pagecolor="#ffffff"
+     bordercolor="#000000"
+     borderopacity="0.25"
+     inkscape:showpageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     inkscape:deskcolor="#2b2b2b"
+     inkscape:document-units="px"
+     inkscape:zoom="3.1835938"
+     inkscape:cx="57.325153"
+     inkscape:cy="40.36319"
+     inkscape:window-width="1920"
+     inkscape:window-height="1017"
+     inkscape:window-x="1912"
+     inkscape:window-y="-8"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="layer1" />
+  <defs
+     id="defs1" />
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1"
+     transform="translate(39,26.999995)">
+    <rect
+       style="fill:#3e3546;stroke:#2e222f;stroke-width:8.00081;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:9.8"
+       id="rect1"
+       sodipodi:type="rect"
+       width="12.675569"
+       height="122.48145"
+       x="20.118074"
+       y="-60.098484"
+       d="m 88.136856,102.68263 h 11.993924 v 115.497 H 88.136856 Z m 79.726284,0 h -11.99392 v 115.497 h 11.99392 z"
+       transform="matrix(0.6524253,0.75785304,-0.77081706,0.63705656,0,0)" />
+  </g>
+</svg>

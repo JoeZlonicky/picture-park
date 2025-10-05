@@ -13,6 +13,8 @@ signal photo_taken(photo: Photo)
 @onready var label: Label = $Label
 @onready var interactable_area: InteractableArea = $InteractableArea
 @onready var interact_collision_shape_2d: CollisionShape2D = $InteractableArea/CollisionShape2D
+@onready var tick_sfx: AudioStreamPlayer2D = $TickSFX
+@onready var snap_sfx: AudioStreamPlayer2D = $SnapSFX
 
 
 func _ready() -> void:
@@ -30,7 +32,10 @@ func _process(_delta: float) -> void:
 		label.hide()
 		return
 	
-	label.text = str(roundi(timer.time_left))
+	var before = label.text
+	label.text = str(roundi(ceil(timer.time_left)))
+	if label.text != before:
+		tick_sfx.play()
 	label.show()
 
 
@@ -71,6 +76,7 @@ func take_photo() -> void:
 	var photo := Photo.new(image, marker_2d.global_position, Time.get_unix_time_from_system(), captures)
 	photo_taken.emit(photo)
 	interact_collision_shape_2d.disabled = false
+	snap_sfx.play()
 
 
 func _on_timer_timeout() -> void:
@@ -80,3 +86,13 @@ func _on_timer_timeout() -> void:
 func _on_interactable_area_interacted_with() -> void:
 	if timer.is_stopped():
 		start_timer()
+
+
+func _on_max_leave_area_body_exited(body: Node2D) -> void:
+	if not body is Player:
+		return
+	
+	if not timer.is_stopped():
+		await photo_taken
+	
+	queue_free.call_deferred()

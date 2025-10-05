@@ -1,0 +1,35 @@
+[gd_scene load_steps=7 format=3 uid="uid://cirxsjynwra38"]
+
+[ext_resource type="Shader" uid="uid://jpickgb20rcm" path="res://shaders/sway.gdshader" id="1_gwvwk"]
+[ext_resource type="Texture2D" uid="uid://lnboyhy65s6h" path="res://content/plants/rhubarb_tree/rhubarb_tree.svg" id="2_gwvwk"]
+[ext_resource type="PackedScene" uid="uid://b3hrnwgsd1m5f" path="res://components/progress/photo_node.tscn" id="3_w5f5a"]
+[ext_resource type="Resource" uid="uid://bxy7wjyr38wfn" path="res://content/plants/rhubarb_tree/rhubab_tree.tres" id="4_quc6s"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_y4oa6"]
+shader = ExtResource("1_gwvwk")
+shader_parameter/speed = 0.25
+shader_parameter/frequency_y = 5.0
+shader_parameter/frequency_x = 5.0
+shader_parameter/amplitude_y = 20.0
+shader_parameter/amplitude_x = 10.0
+shader_parameter/inclination = 10.0
+shader_parameter/rotation_angle = 0.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_sr6ay"]
+size = Vector2(41, 96)
+
+[node name="RhubarbTree" type="StaticBody2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+material = SubResource("ShaderMaterial_y4oa6")
+position = Vector2(7, -208)
+texture = ExtResource("2_gwvwk")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(1.0000001, -19.5)
+rotation = 1.5707964
+shape = SubResource("RectangleShape2D_sr6ay")
+
+[node name="PhotoNode" parent="." instance=ExtResource("3_w5f5a")]
+position = Vector2(6, -173)
+data = ExtResource("4_quc6s")
