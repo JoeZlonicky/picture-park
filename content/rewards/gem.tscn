@@ -1,0 +1,15 @@
+[gd_scene load_steps=4 format=3 uid="uid://bgmf4mj0g3qys"]
+
+[ext_resource type="Texture2D" uid="uid://bcflgmlfy067w" path="res://content/rewards/gem.svg" id="1_jluju"]
+[ext_resource type="PackedScene" uid="uid://b3hrnwgsd1m5f" path="res://components/progress/photo_node.tscn" id="2_x51ax"]
+[ext_resource type="Resource" uid="uid://42r1k206o8k" path="res://content/rewards/gem.tres" id="3_jluju"]
+
+[node name="Gem" type="StaticBody2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(1, -44)
+texture = ExtResource("1_jluju")
+
+[node name="PhotoNode" parent="." instance=ExtResource("2_x51ax")]
+position = Vector2(0, -43)
+data = ExtResource("3_jluju")

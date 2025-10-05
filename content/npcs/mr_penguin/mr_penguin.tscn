@@ -25,6 +25,7 @@ shape = SubResource("CapsuleShape2D_sbbym")
 [node name="NPCTrigger" parent="." instance=ExtResource("2_l3aw5")]
 
 [node name="PhotoNode" parent="." instance=ExtResource("4_ltf3t")]
+position = Vector2(-2, -139)
 data = ExtResource("5_5upc2")
 
 [connection signal="interacted_with" from="NPCTrigger" to="." method="_on_npc_trigger_interacted_with"]

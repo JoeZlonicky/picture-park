@@ -1,0 +1,15 @@
+[gd_scene load_steps=4 format=3 uid="uid://boinm2e3kg3ci"]
+
+[ext_resource type="Texture2D" uid="uid://dicfmeb2gkkn6" path="res://content/rewards/bowling_ball.svg" id="1_ybvqb"]
+[ext_resource type="PackedScene" uid="uid://b3hrnwgsd1m5f" path="res://components/progress/photo_node.tscn" id="2_v5qto"]
+[ext_resource type="Resource" uid="uid://b0eb6p63waaos" path="res://content/rewards/bowling_ball.tres" id="3_ybvqb"]
+
+[node name="BowlingBall" type="StaticBody2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(1, -44)
+texture = ExtResource("1_ybvqb")
+
+[node name="PhotoNode" parent="." instance=ExtResource("2_v5qto")]
+position = Vector2(0, -43)
+data = ExtResource("3_ybvqb")

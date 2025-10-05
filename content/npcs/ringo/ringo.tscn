@@ -1,0 +1,46 @@
+[gd_scene load_steps=17 format=3 uid="uid://bt440x18ay8lv"]
+
+[ext_resource type="Script" uid="uid://3nwnnq62d6qb" path="res://content/npcs/ringo/ringo.gd" id="1_uujvp"]
+[ext_resource type="Script" uid="uid://boao4tucjq5bs" path="res://resources/photo_data/photo_data.gd" id="2_f81c6"]
+[ext_resource type="PackedScene" uid="uid://4qsjc8r4f654" path="res://content/rewards/honey.tscn" id="2_vx3fg"]
+[ext_resource type="Resource" uid="uid://dok102da3n0pr" path="res://content/plants/circle_tree/circle_tree.tres" id="3_c5kkc"]
+[ext_resource type="Resource" uid="uid://do35gp3mo6j6w" path="res://content/plants/coneifer_tree/coneifer_tree.tres" id="4_yh1o3"]
+[ext_resource type="Texture2D" uid="uid://0g06as2i0c6u" path="res://content/npcs/ringo/ringo.svg" id="5_7wtoo"]
+[ext_resource type="Resource" uid="uid://dkajgqf1jme6d" path="res://content/plants/crescent_bush/crescent_bush.tres" id="5_p03db"]
+[ext_resource type="Resource" uid="uid://bbgo4ed3ku7o5" path="res://content/npcs/ringo/ringo.tres" id="5_uujvp"]
+[ext_resource type="Resource" uid="uid://gcfsvtahjj7v" path="res://content/plants/dew_flowers/dew_flowers.tres" id="6_hpu8r"]
+[ext_resource type="PackedScene" uid="uid://c6nb2lq8q6ydx" path="res://components/general/npc_trigger/npc_trigger.tscn" id="6_i2sek"]
+[ext_resource type="Resource" uid="uid://dircfvv7damwx" path="res://content/plants/jewel_flowers/jewel_flowers.tres" id="7_d2xj4"]
+[ext_resource type="PackedScene" uid="uid://b3hrnwgsd1m5f" path="res://components/progress/photo_node.tscn" id="7_to1b0"]
+[ext_resource type="Resource" uid="uid://f30hepdnuu15" path="res://content/plants/power_flower/power_flowers.tres" id="8_tqb34"]
+[ext_resource type="Resource" uid="uid://bxy7wjyr38wfn" path="res://content/plants/rhubarb_tree/rhubab_tree.tres" id="9_0xrr1"]
+[ext_resource type="Resource" uid="uid://bfrq0srflyk4i" path="res://content/plants/star_bush/star_bush.tres" id="10_qgv8r"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_sbbym"]
+radius = 16.0
+height = 126.0
+
+[node name="Ringo" type="StaticBody2D"]
+script = ExtResource("1_uujvp")
+quest_requirement = Array[ExtResource("2_f81c6")]([ExtResource("3_c5kkc"), ExtResource("4_yh1o3"), ExtResource("5_p03db"), ExtResource("6_hpu8r"), ExtResource("7_d2xj4"), ExtResource("8_tqb34"), ExtResource("9_0xrr1"), ExtResource("10_qgv8r")])
+reward_scene = ExtResource("2_vx3fg")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(-2, -125)
+texture = ExtResource("5_7wtoo")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-1, -7)
+rotation = 1.5707964
+shape = SubResource("CapsuleShape2D_sbbym")
+
+[node name="NPCTrigger" parent="." instance=ExtResource("6_i2sek")]
+
+[node name="PhotoNode" parent="." instance=ExtResource("7_to1b0")]
+position = Vector2(-2, -166)
+data = ExtResource("5_uujvp")
+
+[node name="Marker2D" type="Marker2D" parent="."]
+position = Vector2(431, 3)
+
+[connection signal="interacted_with" from="NPCTrigger" to="." method="_on_npc_trigger_interacted_with"]

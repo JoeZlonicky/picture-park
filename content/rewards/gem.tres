@@ -1,0 +1,8 @@
+[gd_resource type="Resource" script_class="PhotoData" load_steps=2 format=3 uid="uid://42r1k206o8k"]
+
+[ext_resource type="Script" uid="uid://boao4tucjq5bs" path="res://resources/photo_data/photo_data.gd" id="1_7vfv2"]
+
+[resource]
+script = ExtResource("1_7vfv2")
+name = "Shiny Blue Rock"
+metadata/_custom_type_script = "uid://boao4tucjq5bs"

@@ -1,4 +1,4 @@
-[gd_scene load_steps=35 format=3 uid="uid://6v441kyjyoan"]
+[gd_scene load_steps=54 format=3 uid="uid://6v441kyjyoan"]
 
 [ext_resource type="Script" uid="uid://ci2tgbe6003r3" path="res://content/scenes/game/game.gd" id="1_gve2d"]
 [ext_resource type="PackedScene" uid="uid://d34o2g1va8dgh" path="res://content/scenes/pause_menu/pause_menu.tscn" id="2_8eu2a"]
@@ -14,19 +14,38 @@
 [ext_resource type="Resource" uid="uid://b60h42dx35r4h" path="res://content/npcs/mr_penguin/mr_penguin.tres" id="6_sbbym"]
 [ext_resource type="AudioStream" uid="uid://4x8w1ilvi8n1" path="res://assets/sfx/victory.wav" id="7_k8wcc"]
 [ext_resource type="PackedScene" uid="uid://ce8dpxhayya51" path="res://content/plants/circle_tree/circle_tree.tscn" id="7_sr6ay"]
+[ext_resource type="Resource" uid="uid://bbgo4ed3ku7o5" path="res://content/npcs/ringo/ringo.tres" id="7_wussa"]
 [ext_resource type="PackedScene" uid="uid://qwomiwoorpkq" path="res://content/interactables/crown_pedestal/crown_pedestal.tscn" id="8_sk0bh"]
+[ext_resource type="Resource" uid="uid://cqaoe77f85vea" path="res://content/npcs/edward/edward.tres" id="8_x57tu"]
 [ext_resource type="PackedScene" uid="uid://ccrbgvhww66b6" path="res://content/scenes/gallery_screen/gallery_screen.tscn" id="9_6851e"]
 [ext_resource type="PackedScene" uid="uid://b507b45rnxi4s" path="res://content/interactables/book_pedestal/book_pedestal.tscn" id="9_b1pv3"]
+[ext_resource type="Resource" uid="uid://ddnx54isgvj0a" path="res://content/npcs/lil_flipper/lil_flipper.tres" id="9_mtg5j"]
 [ext_resource type="PackedScene" uid="uid://ch16dxpr3ebtr" path="res://components/input/fullscreen_toggle/fullscreen_toggle.tscn" id="10_781ya"]
+[ext_resource type="Resource" uid="uid://bog2uvldnhmio" path="res://content/npcs/cody/cody.tres" id="10_dulic"]
+[ext_resource type="Resource" uid="uid://do35gp3mo6j6w" path="res://content/plants/coneifer_tree/coneifer_tree.tres" id="11_x3qeh"]
+[ext_resource type="Resource" uid="uid://dkajgqf1jme6d" path="res://content/plants/crescent_bush/crescent_bush.tres" id="12_d5rk0"]
 [ext_resource type="PackedScene" uid="uid://di7vg4mfn5vlh" path="res://content/npcs/mr_penguin/mr_penguin.tscn" id="13_5p7on"]
+[ext_resource type="Resource" uid="uid://dircfvv7damwx" path="res://content/plants/jewel_flowers/jewel_flowers.tres" id="13_i6tyq"]
+[ext_resource type="Resource" uid="uid://f30hepdnuu15" path="res://content/plants/power_flower/power_flowers.tres" id="14_ghlm2"]
+[ext_resource type="Resource" uid="uid://gcfsvtahjj7v" path="res://content/plants/dew_flowers/dew_flowers.tres" id="15_ycbco"]
+[ext_resource type="PackedScene" uid="uid://dhvxnvv35efb" path="res://content/npcs/cody/cody.tscn" id="16_8cpqd"]
+[ext_resource type="Resource" uid="uid://bfrq0srflyk4i" path="res://content/plants/star_bush/star_bush.tres" id="16_c1265"]
+[ext_resource type="PackedScene" uid="uid://b3pqdfcqiqmrd" path="res://content/npcs/edward/edward.tscn" id="17_snnph"]
+[ext_resource type="Resource" uid="uid://cxc78os8ou3jh" path="res://content/rewards/honey.tres" id="17_wp0kf"]
 [ext_resource type="PackedScene" uid="uid://cu3vlm00478w4" path="res://content/plants/coneifer_tree/coneifer_tree.tscn" id="18_hh5om"]
+[ext_resource type="Resource" uid="uid://b0eb6p63waaos" path="res://content/rewards/bowling_ball.tres" id="18_t7k7n"]
+[ext_resource type="Resource" uid="uid://cwe3rgqm6qn5i" path="res://content/rewards/surf_board.tres" id="19_81a6c"]
 [ext_resource type="PackedScene" uid="uid://cirxsjynwra38" path="res://content/plants/rhubarb_tree/rhubarb_tree.tscn" id="19_3211c"]
+[ext_resource type="PackedScene" uid="uid://bt440x18ay8lv" path="res://content/npcs/ringo/ringo.tscn" id="19_y8wi6"]
+[ext_resource type="Resource" uid="uid://bxy7wjyr38wfn" path="res://content/plants/rhubarb_tree/rhubab_tree.tres" id="20_o7yg0"]
 [ext_resource type="AudioStream" uid="uid://duq6jubhxi4cx" path="res://assets/music/Noot.mp3" id="20_prmr5"]
 [ext_resource type="PackedScene" uid="uid://blv12aaplo5oq" path="res://content/plants/star_bush/star_bush.tscn" id="20_vwi1d"]
 [ext_resource type="PackedScene" uid="uid://d5l5ehqcjxf0" path="res://content/plants/crescent_bush/crescent_bush.tscn" id="21_dacgw"]
+[ext_resource type="Resource" uid="uid://42r1k206o8k" path="res://content/rewards/gem.tres" id="21_o7082"]
 [ext_resource type="PackedScene" uid="uid://dsy4yqbpd7fwm" path="res://content/plants/dew_flowers/dew_flowers.tscn" id="22_d5ix5"]
 [ext_resource type="PackedScene" uid="uid://c1hgk10rfw8hm" path="res://content/plants/power_flower/power_flowers.tscn" id="23_eusmi"]
 [ext_resource type="PackedScene" uid="uid://0vtgwnodbknu" path="res://content/plants/jewel_flowers/jewel_flowers.tscn" id="24_x7hgf"]
+[ext_resource type="PackedScene" uid="uid://4ghpkbkbvixg" path="res://content/npcs/lil_flipper/lil_flipper.tscn" id="29_y8wi6"]
 
 [sub_resource type="Animation" id="Animation_sbbym"]
 resource_name = "victory"
@@ -104,7 +123,7 @@ normal = Vector2(1, 0)
 
 [node name="Game" type="Node2D"]
 script = ExtResource("1_gve2d")
-all_photos = Array[ExtResource("2_ccpix")]([ExtResource("3_6851e"), ExtResource("4_781ya"), ExtResource("5_cmdph"), ExtResource("6_sbbym")])
+all_photos = Array[ExtResource("2_ccpix")]([ExtResource("18_t7k7n"), ExtResource("5_cmdph"), ExtResource("10_dulic"), ExtResource("11_x3qeh"), ExtResource("12_d5rk0"), ExtResource("15_ycbco"), ExtResource("8_x57tu"), ExtResource("17_wp0kf"), ExtResource("13_i6tyq"), ExtResource("9_mtg5j"), ExtResource("6_sbbym"), ExtResource("4_781ya"), ExtResource("14_ghlm2"), ExtResource("20_o7yg0"), ExtResource("7_wussa"), ExtResource("21_o7082"), ExtResource("16_c1265"), ExtResource("19_81a6c"), ExtResource("3_6851e")])
 
 [node name="HUD" type="CanvasLayer" parent="."]
 
@@ -230,6 +249,18 @@ y_sort_enabled = true
 
 [node name="MrPenguin" parent="World" instance=ExtResource("13_5p7on")]
 position = Vector2(3, -342)
+
+[node name="Cody" parent="World" instance=ExtResource("16_8cpqd")]
+position = Vector2(2906, -3106)
+
+[node name="Edward" parent="World" instance=ExtResource("17_snnph")]
+position = Vector2(-1826, 2525)
+
+[node name="LilFlipper" parent="World" instance=ExtResource("29_y8wi6")]
+position = Vector2(-1903, -2725)
+
+[node name="Ringo" parent="World" instance=ExtResource("19_y8wi6")]
+position = Vector2(2542, 2643)
 
 [node name="Player" parent="World" instance=ExtResource("3_venge")]
 position = Vector2(-15, 492)
@@ -717,6 +748,15 @@ position = Vector2(-123, 4314)
 
 [node name="PowerFlowers15" parent="World/Flowers" instance=ExtResource("23_eusmi")]
 position = Vector2(108, 4314)
+
+[node name="PowerFlowers32" parent="World/Flowers" instance=ExtResource("23_eusmi")]
+position = Vector2(2542, 2524)
+
+[node name="PowerFlowers33" parent="World/Flowers" instance=ExtResource("23_eusmi")]
+position = Vector2(2381, 2685)
+
+[node name="PowerFlowers34" parent="World/Flowers" instance=ExtResource("23_eusmi")]
+position = Vector2(2698, 2676)
 
 [node name="PowerFlowers16" parent="World/Flowers" instance=ExtResource("23_eusmi")]
 position = Vector2(-520, 4648)

@@ -1,0 +1,43 @@
+[gd_scene load_steps=14 format=3 uid="uid://dhvxnvv35efb"]
+
+[ext_resource type="Script" uid="uid://c58wnv3hw6nc4" path="res://content/npcs/cody/cody.gd" id="1_6sbdm"]
+[ext_resource type="Texture2D" uid="uid://12hcel0gbwfn" path="res://content/npcs/cody/cody.svg" id="1_jx3bx"]
+[ext_resource type="Script" uid="uid://boao4tucjq5bs" path="res://resources/photo_data/photo_data.gd" id="2_asy1o"]
+[ext_resource type="PackedScene" uid="uid://c6nb2lq8q6ydx" path="res://components/general/npc_trigger/npc_trigger.tscn" id="3_70e27"]
+[ext_resource type="Resource" uid="uid://ew6cl14t4olo" path="res://content/player/player.tres" id="4_78jcv"]
+[ext_resource type="PackedScene" uid="uid://b3hrnwgsd1m5f" path="res://components/progress/photo_node.tscn" id="4_t8xhe"]
+[ext_resource type="Resource" uid="uid://bog2uvldnhmio" path="res://content/npcs/cody/cody.tres" id="5_6sbdm"]
+[ext_resource type="Resource" uid="uid://b60h42dx35r4h" path="res://content/npcs/mr_penguin/mr_penguin.tres" id="5_54dda"]
+[ext_resource type="PackedScene" uid="uid://qstfak57j7t1" path="res://content/rewards/surf_board.tscn" id="6_78jcv"]
+[ext_resource type="Resource" uid="uid://bbgo4ed3ku7o5" path="res://content/npcs/ringo/ringo.tres" id="6_441ax"]
+[ext_resource type="Resource" uid="uid://cqaoe77f85vea" path="res://content/npcs/edward/edward.tres" id="7_7obxt"]
+[ext_resource type="Resource" uid="uid://ddnx54isgvj0a" path="res://content/npcs/lil_flipper/lil_flipper.tres" id="8_f0h6v"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_sbbym"]
+radius = 16.0
+height = 126.0
+
+[node name="Cody" type="StaticBody2D"]
+script = ExtResource("1_6sbdm")
+quest_requirement = Array[ExtResource("2_asy1o")]([ExtResource("5_6sbdm"), ExtResource("4_78jcv"), ExtResource("5_54dda"), ExtResource("6_441ax"), ExtResource("7_7obxt"), ExtResource("8_f0h6v")])
+reward_scene = ExtResource("6_78jcv")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(-1, -128.5)
+texture = ExtResource("1_jx3bx")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-1, -7)
+rotation = 1.5707964
+shape = SubResource("CapsuleShape2D_sbbym")
+
+[node name="NPCTrigger" parent="." instance=ExtResource("3_70e27")]
+
+[node name="PhotoNode" parent="." instance=ExtResource("4_t8xhe")]
+position = Vector2(-4, -118)
+data = ExtResource("5_6sbdm")
+
+[node name="Marker2D" type="Marker2D" parent="."]
+position = Vector2(431, 3)
+
+[connection signal="interacted_with" from="NPCTrigger" to="." method="_on_npc_trigger_interacted_with"]

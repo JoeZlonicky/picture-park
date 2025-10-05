@@ -1,0 +1,15 @@
+[gd_scene load_steps=4 format=3 uid="uid://4qsjc8r4f654"]
+
+[ext_resource type="Texture2D" uid="uid://bofmus7ppbof3" path="res://content/rewards/honey.svg" id="1_m6byg"]
+[ext_resource type="PackedScene" uid="uid://b3hrnwgsd1m5f" path="res://components/progress/photo_node.tscn" id="2_e00yt"]
+[ext_resource type="Resource" uid="uid://cxc78os8ou3jh" path="res://content/rewards/honey.tres" id="3_m6byg"]
+
+[node name="Honey" type="StaticBody2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(1, -44)
+texture = ExtResource("1_m6byg")
+
+[node name="PhotoNode" parent="." instance=ExtResource("2_e00yt")]
+position = Vector2(0, -43)
+data = ExtResource("3_m6byg")

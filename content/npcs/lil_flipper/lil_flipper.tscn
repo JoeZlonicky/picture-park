@@ -1,0 +1,39 @@
+[gd_scene load_steps=10 format=3 uid="uid://4ghpkbkbvixg"]
+
+[ext_resource type="Script" uid="uid://kja7ywgqxbsw" path="res://content/npcs/lil_flipper/lil_flipper.gd" id="1_oey18"]
+[ext_resource type="Script" uid="uid://boao4tucjq5bs" path="res://resources/photo_data/photo_data.gd" id="2_iq1bv"]
+[ext_resource type="PackedScene" uid="uid://boinm2e3kg3ci" path="res://content/rewards/bowling_ball.tscn" id="2_ptyqk"]
+[ext_resource type="Texture2D" uid="uid://bc3xm8iyem8c2" path="res://content/npcs/lil_flipper/lil_flipper.svg" id="3_ptyqk"]
+[ext_resource type="PackedScene" uid="uid://c6nb2lq8q6ydx" path="res://components/general/npc_trigger/npc_trigger.tscn" id="4_5l0ek"]
+[ext_resource type="PackedScene" uid="uid://b3hrnwgsd1m5f" path="res://components/progress/photo_node.tscn" id="5_j01a6"]
+[ext_resource type="Resource" uid="uid://cqaoe77f85vea" path="res://content/npcs/edward/edward.tres" id="6_otk2s"]
+[ext_resource type="Resource" uid="uid://ddnx54isgvj0a" path="res://content/npcs/lil_flipper/lil_flipper.tres" id="6_ptyqk"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_sbbym"]
+radius = 16.0
+height = 126.0
+
+[node name="LilFlipper" type="StaticBody2D"]
+script = ExtResource("1_oey18")
+quest_requirement = Array[ExtResource("2_iq1bv")]([ExtResource("6_otk2s")])
+reward_scene = ExtResource("2_ptyqk")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(-1, -106.5)
+texture = ExtResource("3_ptyqk")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-1, -7)
+rotation = 1.5707964
+shape = SubResource("CapsuleShape2D_sbbym")
+
+[node name="NPCTrigger" parent="." instance=ExtResource("4_5l0ek")]
+
+[node name="PhotoNode" parent="." instance=ExtResource("5_j01a6")]
+position = Vector2(0, -97)
+data = ExtResource("6_ptyqk")
+
+[node name="Marker2D" type="Marker2D" parent="."]
+position = Vector2(431, 3)
+
+[connection signal="interacted_with" from="NPCTrigger" to="." method="_on_npc_trigger_interacted_with"]

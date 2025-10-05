@@ -16,3 +16,9 @@ static func get_player() -> Player:
 static func is_beat() -> bool:
 	var game := get_game()
 	return game.crown_pedestal.unlocked
+
+
+static func spawn(node: Node2D, at: Vector2) -> void:
+	var game := get_game()
+	game.world.add_child(node)
+	node.global_position = at

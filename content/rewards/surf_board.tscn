@@ -1,0 +1,15 @@
+[gd_scene load_steps=4 format=3 uid="uid://qstfak57j7t1"]
+
+[ext_resource type="Texture2D" uid="uid://dmgm72v0crlqo" path="res://content/rewards/surf_board.svg" id="2_afxaw"]
+[ext_resource type="Resource" uid="uid://cwe3rgqm6qn5i" path="res://content/rewards/surf_board.tres" id="3_0jge7"]
+[ext_resource type="PackedScene" uid="uid://b3hrnwgsd1m5f" path="res://components/progress/photo_node.tscn" id="3_lkr1e"]
+
+[node name="SurfBoard" type="StaticBody2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(1, -44)
+texture = ExtResource("2_afxaw")
+
+[node name="PhotoNode" parent="." instance=ExtResource("3_lkr1e")]
+position = Vector2(1, -54)
+data = ExtResource("3_0jge7")

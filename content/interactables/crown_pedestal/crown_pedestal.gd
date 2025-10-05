@@ -20,6 +20,7 @@ func _ready() -> void:
 func update_progress(current: int, total: int) -> void:
 	if not crown_on_pedestal:
 		label.text = ""
+		return
 	
 	if current < total:
 		label.text = str(current) + " / " + str(total)
