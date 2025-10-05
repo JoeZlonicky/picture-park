@@ -6,4 +6,4 @@
 [node name="Launcher" type="Node"]
 script = ExtResource("1_m3vdr")
 _default_main_scene = ExtResource("2_pedqv")
-_min_window_size = Vector2i(640, 640)
+_min_window_size = Vector2i(533, 533)
